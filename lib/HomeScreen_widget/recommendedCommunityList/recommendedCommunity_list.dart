@@ -1,8 +1,8 @@
 import 'package:committee/models/community.dart';
 import 'package:flutter/material.dart';
 
-class belongToCommunityList extends StatelessWidget {
-  const belongToCommunityList({
+class RecommendedCommunityList extends StatelessWidget {
+  const RecommendedCommunityList({
     super.key,
     required this.communities,
   });
