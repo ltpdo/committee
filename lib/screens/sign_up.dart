@@ -1,3 +1,5 @@
+import 'package:committee/models/register_model.dart';
+import 'package:committee/screens/HomeScreen.dart';
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -10,6 +12,8 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class SignUpScreenState extends State<SignUpScreen> {
+  final RegisterModel register = RegisterModel();
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -33,28 +37,45 @@ class SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(
                   height: size.height / 5,
                 ),
+                //メールアドレス入力用テキストフィールド
                 SizedBox(
                   width: size.width / 7 * 6,
                   child: TextFormField(
                     decoration: const InputDecoration(
-                        border: OutlineInputBorder(), hintText: "ユーザーID"),
+                        border: OutlineInputBorder(), labelText: "メールアドレス"),
+                    onChanged: (String value) {
+                      setState(() {
+                        register.setEmail(value);
+                      });
+                    },
                   ),
                 ),
                 SizedBox(
                   height: size.height / 20,
                 ),
+                //パスワード入力用テキストフィールド
                 SizedBox(
                   width: size.width / 7 * 6,
                   child: TextFormField(
                     decoration: const InputDecoration(
-                        border: OutlineInputBorder(), hintText: "パスワード"),
+                        border: OutlineInputBorder(), labelText: "パスワード"),
+                    onChanged: (String value) {
+                      register.setPassword(value);
+                    },
                   ),
                 ),
                 SizedBox(
                   height: size.height / 10,
                 ),
+                //アカウント作成ボタン
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await register.signUp();
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const HomeScreen();
+                    }));
+                  },
                   style: ButtonStyle(
                     backgroundColor:
                         MaterialStateProperty.all<Color>(Colors.red),
