@@ -60,6 +60,7 @@ class RegisterModel {
           'uid': uid,
           'name': "",
           'urole': urole,
+          'picture': "",
         });
         // ignore: use_build_context_synchronously
         Navigator.push(context, MaterialPageRoute(builder: (context) {
