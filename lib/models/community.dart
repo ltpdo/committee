@@ -14,6 +14,6 @@ class Community {
   final String circlename;
   final String circleplace;
   final String circlecontent;
-  final File circlepicture;
+  final Icon circlepicture;
   final String circleduration;
 }

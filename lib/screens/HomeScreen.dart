@@ -1,10 +1,15 @@
+import 'package:committee/data/dummy_data.dart';
+import 'package:committee/models/community.dart';
 import 'package:flutter/material.dart';
 import 'package:committee/screens/SearchScreen.dart';
 import 'package:committee/screens/MessageScreen.dart';
 import 'package:committee/screens/AccountScreen.dart';
+import 'package:committee/HomeScreen_widget/belongToCommunityList/belongToCommunity_list.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({
+    super.key,
+  });
 
   @override
   State<HomeScreen> createState() {
@@ -13,8 +18,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _selectedIndex = 0;
-
   void _onItemTapped(int index) {
     setState(() {
       if (index == 1) {
@@ -37,4 +40,76 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('コミティ'),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+          ),
+        ],
+      ),
+      body: Column(
+        children: [
+          Container(
+            color: Colors.red,
+            height: 265,
+            child: Column(
+              children: [
+                SizedBox(height: 12),
+                Title(
+                  color: Colors.black,
+                  child: Text(
+                    '所属しているコミュニティ',
+                  ),
+                ),
+                SizedBox(height: 20),
+                belongToCommunityList(communities: dummy_community),
+                SizedBox(height: 6),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Text('もっと見る'),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 50),
+          Container(
+            color: Colors.blue,
+            height: 265,
+            child: Column(
+              children: [
+                SizedBox(height: 12),
+                Title(
+                  color: Colors.black,
+                  child: Text(
+                    'おすすめのコミュニティ',
+                  ),
+                ),
+                SizedBox(height: 20),
+                belongToCommunityList(communities: dummy_community),
+                SizedBox(height: 6),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Text('もっと見る'),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: _onItemTapped,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'ホーム画面'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: '検索'),
+          BottomNavigationBarItem(icon: Icon(Icons.mail), label: 'メッセージ'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'アカウント'),
+        ],
+        type: BottomNavigationBarType.fixed,
+      ),
+    );
+  }
 }
