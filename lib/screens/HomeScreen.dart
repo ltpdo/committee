@@ -37,31 +37,5 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('コミティ'),
-          automaticallyImplyLeading: false,
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.add),
-            ),
-          ],
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          onTap: _onItemTapped,
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'ホーム画面'),
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: '検索'),
-            BottomNavigationBarItem(icon: Icon(Icons.mail), label: 'メッセージ'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'アカウント'),
-          ],
-          type: BottomNavigationBarType.fixed,
-        ),
-      ),
-    );
-  }
+  Widget build(BuildContext context) {}
 }
