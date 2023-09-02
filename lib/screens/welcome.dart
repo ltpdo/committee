@@ -1,3 +1,5 @@
+import 'package:committee/screens/sign_in.dart';
+import 'package:committee/screens/sign_up.dart';
 import 'package:flutter/material.dart';
 
 class Welcome extends StatelessWidget {
@@ -18,16 +20,21 @@ class Welcome extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: size.height / 3,
+              height: size.height / 4,
             ),
             SizedBox(
-              height: size.height / 3,
+              height: size.height / 2.8,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   //以下３つのボタンは吉川が編集します。
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (BuildContext context) {
+                        return const SignUpScreen(urole: '一般');
+                      }));
+                    },
                     style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all<Color>(Colors.red),
@@ -42,7 +49,12 @@ class Welcome extends StatelessWidget {
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (BuildContext context) {
+                        return const SignUpScreen(urole: '企業');
+                      }));
+                    },
                     style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all<Color>(Colors.blue),
@@ -57,7 +69,12 @@ class Welcome extends StatelessWidget {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (BuildContext context) {
+                        return const SignInScreen();
+                      }));
+                    },
                     child: Text(
                       "すでにアカウントを持ってる方はこちら",
                       style: TextStyle(
@@ -67,12 +84,6 @@ class Welcome extends StatelessWidget {
                 ],
               ),
             ),
-
-            /*
-            --------------------以下を編集してください--------------------
-            下のボタンはデバッグ用。onPressedプロパティにホーム画面のWidgetを渡してください。
-            */
-            ElevatedButton(onPressed: null, child: const Text("ホーム画面へ"))
           ],
         ),
       ),
