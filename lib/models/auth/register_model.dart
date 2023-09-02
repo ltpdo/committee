@@ -58,7 +58,7 @@ class RegisterModel {
         await doc.add({
           'email': user.email,
           'uid': uid,
-          'name': "",
+          'name': "名無し",
           'urole': urole,
           'picture': "",
         });
