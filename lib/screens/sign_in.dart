@@ -1,18 +1,17 @@
-import 'package:committee/models/auth/register_model.dart';
+import 'package:committee/models/auth/sign_in_model.dart';
 import 'package:flutter/material.dart';
 
-class SignUpScreen extends StatefulWidget {
-  final String urole;
-  const SignUpScreen({Key? key, required this.urole}) : super(key: key);
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
 
   @override
   State<StatefulWidget> createState() {
-    return SignUpScreenState();
+    return SignInScreenState();
   }
 }
 
-class SignUpScreenState extends State<SignUpScreen> {
-  final RegisterModel register = RegisterModel();
+class SignInScreenState extends State<SignInScreen> {
+  final SignInModel signIn = SignInModel();
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +44,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                         border: OutlineInputBorder(), labelText: "メールアドレス"),
                     onChanged: (String value) {
                       setState(() {
-                        register.setEmail(value);
+                        signIn.setEmail(value);
                       });
                     },
                   ),
@@ -61,17 +60,17 @@ class SignUpScreenState extends State<SignUpScreen> {
                     decoration: const InputDecoration(
                         border: OutlineInputBorder(), labelText: "パスワード"),
                     onChanged: (String value) {
-                      register.setPassword(value);
+                      signIn.setPassword(value);
                     },
                   ),
                 ),
                 SizedBox(
                   height: size.height / 10,
                 ),
-                //アカウント作成ボタン
+                //ログインボタン
                 ElevatedButton(
                   onPressed: () async {
-                    if (register.email == null || register.password == null) {
+                    if (signIn.email == null || signIn.password == null) {
                       showDialog(
                           context: context,
                           builder: (_) {
@@ -98,48 +97,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                             );
                           });
                     } else {
-                      showDialog(
-                          context: context,
-                          builder: (_) {
-                            return AlertDialog(
-                              title: const Text("よろしいですか？"),
-                              content: FittedBox(
-                                fit: BoxFit.fill,
-                                child: Column(
-                                  children: <Widget>[
-                                    const Text("以下の内容でアカウントを作成しますか？"),
-                                    const Text("メールアドレス"),
-                                    Text(register.email!),
-                                    const Text("パスワード"),
-                                    Text(register.password!),
-                                  ],
-                                ),
-                              ),
-                              actions: <Widget>[
-                                TextButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: const Text(
-                                      "Cancel",
-                                      style: TextStyle(color: Colors.blue),
-                                    )),
-                                TextButton(
-                                  onPressed: () async {
-                                    Navigator.pop(context);
-                                    await register.signUp(
-                                      context,
-                                      widget.urole,
-                                    );
-                                  },
-                                  child: const Text(
-                                    "OK",
-                                    style: TextStyle(color: Colors.red),
-                                  ),
-                                ),
-                              ],
-                            );
-                          });
+                      await signIn.signIn(context);
                     }
                   },
                   style: ButtonStyle(
@@ -148,7 +106,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                     elevation: MaterialStateProperty.all<double>(2.0),
                   ),
                   child: Text(
-                    "アカウント作成",
+                    "ログイン",
                     style: TextStyle(
                       fontSize: size.width / 14,
                       color: Colors.white,

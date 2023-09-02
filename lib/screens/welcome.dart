@@ -1,3 +1,4 @@
+import 'package:committee/screens/sign_in.dart';
 import 'package:committee/screens/sign_up.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +32,7 @@ class Welcome extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).push(
                           MaterialPageRoute(builder: (BuildContext context) {
-                        return SignUpScreen();
+                        return const SignUpScreen(urole: '一般');
                       }));
                     },
                     style: ButtonStyle(
@@ -48,7 +49,12 @@ class Welcome extends StatelessWidget {
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (BuildContext context) {
+                        return const SignUpScreen(urole: '企業');
+                      }));
+                    },
                     style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all<Color>(Colors.blue),
@@ -63,7 +69,12 @@ class Welcome extends StatelessWidget {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (BuildContext context) {
+                        return const SignInScreen();
+                      }));
+                    },
                     child: Text(
                       "すでにアカウントを持ってる方はこちら",
                       style: TextStyle(
