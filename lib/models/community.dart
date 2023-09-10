@@ -16,4 +16,6 @@ class Community {
   final String circlecontent;
   final Icon circlepicture;
   final String circleduration;
+
+  get amount => null;
 }

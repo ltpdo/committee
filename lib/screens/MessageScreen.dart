@@ -1,4 +1,7 @@
+import 'package:committee/data/dummy_data.dart';
+import 'package:committee/models/community.dart';
 import 'package:flutter/material.dart';
+import '../MessageScreen_widget/tolkList_list.dart';
 
 class MessageScreen extends StatelessWidget {
   const MessageScreen({Key? key}) : super(key: key);
@@ -6,11 +9,21 @@ class MessageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('コミティ'),
+      body: Scaffold(
+        appBar: AppBar(
+          title: Text('選択'),
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: TolkList(
+                interlocuter: dummy_community,
+                onRemoveTolk: (community) {},
+              ),
+            ),
+          ],
+        ),
       ),
-      body:
-          const Center(child: Text('メッセージ', style: TextStyle(fontSize: 32.0))),
     );
   }
 }
