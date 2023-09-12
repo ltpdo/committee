@@ -1,4 +1,4 @@
-import 'package:committee/MessageScreen_widget/screens/chat.dart';
+import 'package:committee/MessageScreen_widget/ChatRoom/screens/chat.dart';
 import 'package:committee/models/community.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +14,10 @@ class tolkListItem extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return ChatScreen();
+              return ChatScreen(
+                circleid: community.circleid,
+                circlename: community.circlename,
+              );
             },
           ),
         );
@@ -33,6 +36,8 @@ class tolkListItem extends StatelessWidget {
                   community.circlepicture,
                   SizedBox(width: 15),
                   Text(community.circlename),
+                  SizedBox(width: 10),
+                  Text(community.circleid),
                 ],
               ),
             ],

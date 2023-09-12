@@ -5,7 +5,6 @@ class MessageBubble extends StatelessWidget {
   // Create a message bubble which is meant to be the first in the sequence.
   const MessageBubble.first({
     super.key,
-    required this.userImage,
     required this.username,
     required this.message,
     required this.isMe,
@@ -17,7 +16,6 @@ class MessageBubble extends StatelessWidget {
     required this.message,
     required this.isMe,
   })  : isFirstInSequence = false,
-        userImage = null,
         username = null;
 
   // Whether or not this message bubble is the first in a sequence of messages
@@ -29,7 +27,6 @@ class MessageBubble extends StatelessWidget {
 
   // Image of the user to be displayed next to the bubble.
   // Not required if the message is not the first in a sequence.
-  final String? userImage;
 
   // Username of the user.
   // Not required if the message is not the first in a sequence.
@@ -45,19 +42,6 @@ class MessageBubble extends StatelessWidget {
 
     return Stack(
       children: [
-        if (userImage != null)
-          Positioned(
-            top: 15,
-            // Align user image to the right, if the message is from me.
-            right: isMe ? 0 : null,
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                userImage!,
-              ),
-              backgroundColor: theme.colorScheme.primary.withAlpha(180),
-              radius: 23,
-            ),
-          ),
         Container(
           // Add some margin to the edges of the messages, to allow space for the
           // user's image.

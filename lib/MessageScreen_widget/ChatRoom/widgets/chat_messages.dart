@@ -1,43 +1,50 @@
-import 'package:committee/MessageScreen_widget/widgets/message_bubble.dart';
+import 'package:committee/MessageScreen_widget/ChatRoom/widgets/message_bubble.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ChatMessages extends StatelessWidget {
-  const ChatMessages({super.key});
+  const ChatMessages({super.key, required this.circleid});
+
+  final String circleid;
 
   @override
   Widget build(BuildContext context) {
     final authenticatedUser = FirebaseAuth.instance.currentUser!;
+    print(authenticatedUser.uid);
+
+    String _authUid = authenticatedUser.uid;
+
+    /*
+    final db = FirebaseFirestore.instance;
+    final docRef = db.collection("user").doc("aOW6mwQiEuPMvDUKzolj");
+    docRef.get().then(
+      (DocumentSnapshot doc) {
+        final data = doc.data() as Map<String, dynamic>;
+        print(data);
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+    */
 
     return StreamBuilder(
       stream: FirebaseFirestore.instance
           .collection('chat')
+          .where('to', isEqualTo: circleid)
+          .where('uid', isEqualTo: _authUid)
           .orderBy(
             'createdAt',
             descending: true,
           )
           .snapshots(),
       builder: (ctx, chatSnapshot) {
-        if (chatSnapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-
-        if (!chatSnapshot.hasData || chatSnapshot.data!.docs.isEmpty) {
-          return const Center(
-            child: Text('No message found'),
-          );
-        }
-
         if (chatSnapshot.hasError) {
           return const Center(
-            child: Text('Something went wrong...'),
-          );
+              //child: Text('Something went wrong...'),
+              );
         }
 
-        final loadedMessages = chatSnapshot.data!.docs;
+        final loadedMessages = chatSnapshot.data?.docs ?? []; // null安全なアクセス
 
         return ListView.builder(
           padding: const EdgeInsets.only(
@@ -48,14 +55,15 @@ class ChatMessages extends StatelessWidget {
           reverse: true,
           itemCount: loadedMessages.length,
           itemBuilder: (ctx, index) {
-            final chatMessage = loadedMessages[index].data();
+            final chatMessage =
+                loadedMessages[index]?.data() ?? {}; // null安全なアクセス
             final nextChatMessage = index + 1 < loadedMessages.length
-                ? loadedMessages[index + 1].data()
+                ? loadedMessages[index + 1]?.data() ?? {}
                 : null;
 
-            final currentMessageUserId = chatMessage['userId'];
+            final currentMessageUserId = chatMessage['uid'];
             final nextMessageUserId =
-                nextChatMessage != null ? nextChatMessage['userId'] : null;
+                nextChatMessage != null ? nextChatMessage['uid'] : null;
             final nextUserIsSame = nextMessageUserId == currentMessageUserId;
 
             if (nextUserIsSame) {
@@ -65,8 +73,7 @@ class ChatMessages extends StatelessWidget {
               );
             } else {
               return MessageBubble.first(
-                userImage: chatMessage['userImage'],
-                username: chatMessage['username'],
+                username: chatMessage['name'],
                 message: chatMessage['text'],
                 isMe: authenticatedUser.uid == currentMessageUserId,
               );

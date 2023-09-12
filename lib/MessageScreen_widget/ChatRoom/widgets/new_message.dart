@@ -3,7 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class NewMessage extends StatefulWidget {
-  const NewMessage({super.key});
+  const NewMessage({super.key, required this.circleid});
+
+  final String circleid;
 
   @override
   State<NewMessage> createState() {
@@ -27,24 +29,26 @@ class _NewMessageState extends State<NewMessage> {
       return;
     }
 
-    FocusScope.of(context).unfocus();
-    _messageController.clear();
-
     final user = FirebaseAuth.instance.currentUser!;
-    final userData = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(user.uid)
-        .get();
+    final userData =
+        await FirebaseFirestore.instance.collection('user').doc(user.uid).get();
 
-    FirebaseFirestore.instance.collection('chat').add(
-      {
-        'text': enteredMessage,
-        'createdAt': Timestamp.now(),
-        'userId': user.uid,
-        'username': userData.data()!['username'],
-        'userImage': userData.data()!['image_url'],
-      },
-    );
+    if (user != null) {
+      final String uid = user.uid;
+      String email = user.email!;
+      print('UID: $uid');
+      print('Email: $email');
+    } else {
+      print('b');
+    }
+
+    FirebaseFirestore.instance.collection('chat').add({
+      'text': enteredMessage,
+      'createdAt': Timestamp.now(),
+      'uid': user.uid,
+      'to': widget.circleid,
+      //'name': userData.data()!['name'],
+    });
   }
 
   @override
