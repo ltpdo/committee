@@ -1,4 +1,4 @@
-import 'package:committee/MessageScreen_widget/ChatRoom/screens/chat.dart';
+import 'package:committee/component/message_screen_widget/chat_room/screens/chat.dart';
 import 'package:committee/models/community.dart';
 import 'package:flutter/material.dart';
 
