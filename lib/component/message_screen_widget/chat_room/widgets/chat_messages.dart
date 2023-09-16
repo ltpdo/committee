@@ -1,4 +1,4 @@
-import 'package:committee/MessageScreen_widget/ChatRoom/widgets/message_bubble.dart';
+import 'package:committee/component/message_screen_widget/chat_room/widgets/message_bubble.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

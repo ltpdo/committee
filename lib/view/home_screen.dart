@@ -1,11 +1,6 @@
+import 'package:committee/component/home_screen_widget/belong_to_community_list/belong_to_community_list.dart';
 import 'package:committee/data/dummy_data.dart';
-import 'package:committee/models/community.dart';
 import 'package:flutter/material.dart';
-import 'package:committee/screens/SearchScreen.dart';
-import 'package:committee/screens/MessageScreen.dart';
-import 'package:committee/screens/AccountScreen.dart';
-import 'package:committee/HomeScreen_widget/belongToCommunityList/belongToCommunity_list.dart';
-import 'package:committee/BottomNavigationBar/mainPageState.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

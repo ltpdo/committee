@@ -1,5 +1,4 @@
-import 'package:committee/BottomNavigationBar/mainPageState.dart';
-import 'package:committee/screens/HomeScreen.dart';
+import 'package:committee/bottom_navigation_bar/main_page_dtate.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

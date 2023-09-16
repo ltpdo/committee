@@ -1,5 +1,4 @@
-import 'package:committee/MessageScreen_widget/ChatList/ChatList_item.dart';
-import 'package:committee/data/dummy_data.dart';
+import 'package:committee/component/message_screen_widget/chat_list/chat_list_item.dart';
 import 'package:committee/models/community.dart';
 import 'package:flutter/material.dart';
 

@@ -1,5 +1,5 @@
-import 'package:committee/screens/sign_in.dart';
-import 'package:committee/screens/sign_up.dart';
+import 'package:committee/view/sign_in.dart';
+import 'package:committee/view/sign_up.dart';
 import 'package:flutter/material.dart';
 
 class Welcome extends StatelessWidget {
