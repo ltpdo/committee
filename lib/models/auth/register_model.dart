@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:committee/BottomNavigationBar/mainPageState.dart';
 import 'package:committee/screens/HomeScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -64,7 +65,7 @@ class RegisterModel {
         });
         // ignore: use_build_context_synchronously
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return const HomeScreen();
+          return const MainPageState();
         }));
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {

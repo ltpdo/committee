@@ -5,11 +5,10 @@ import 'package:committee/screens/SearchScreen.dart';
 import 'package:committee/screens/MessageScreen.dart';
 import 'package:committee/screens/AccountScreen.dart';
 import 'package:committee/HomeScreen_widget/belongToCommunityList/belongToCommunity_list.dart';
+import 'package:committee/BottomNavigationBar/mainPageState.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({
-    super.key,
-  });
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() {
@@ -18,27 +17,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  void _onItemTapped(int index) {
-    setState(() {
-      if (index == 1) {
-        print(index);
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return SearchScreen();
-        }));
-      } else if (index == 2) {
-        print(index);
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return MessageScreen();
-        }));
-      } else if (index == 3) {
-        print(index);
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return AccountScreen();
-        }));
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -102,16 +80,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ],
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          onTap: _onItemTapped,
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'ホーム画面'),
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: '検索'),
-            BottomNavigationBarItem(icon: Icon(Icons.mail), label: 'メッセージ'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'アカウント'),
-          ],
-          type: BottomNavigationBarType.fixed,
         ),
       ),
     );
