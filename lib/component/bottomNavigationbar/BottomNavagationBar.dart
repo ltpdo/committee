@@ -1,7 +1,7 @@
-import 'package:committee/screens/AccountScreen.dart';
-import 'package:committee/screens/HomeScreen.dart';
-import 'package:committee/screens/MessageScreen.dart';
-import 'package:committee/screens/SearchScreen.dart';
+import 'package:committee/view/account_screen.dart';
+import 'package:committee/view/home_screen.dart';
+import 'package:committee/view/message_screen.dart';
+import 'package:committee/view/search_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainPageState extends StatefulWidget {

@@ -1,5 +1,5 @@
-import 'package:committee/MessageScreen_widget/ChatRoom/widgets/chat_messages.dart';
-import 'package:committee/MessageScreen_widget/ChatRoom/widgets/new_message.dart';
+import 'package:committee/component/message_screen_widget/chat_room/widgets/chat_messages.dart';
+import 'package:committee/component/message_screen_widget/chat_room/widgets/new_message.dart';
 import 'package:committee/models/community.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

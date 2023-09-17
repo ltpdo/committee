@@ -1,4 +1,4 @@
-import 'package:committee/HomeScreen_widget/belongToCommunityList/belongToCommunity_item.dart';
+import 'package:committee/component/home_screen_widget/belong_to_community_list/belong_to_community_item.dart';
 import 'package:committee/data/dummy_data.dart';
 import 'package:committee/models/community.dart';
 import 'package:flutter/material.dart';
