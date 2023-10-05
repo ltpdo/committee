@@ -1,15 +1,19 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:committee/models/tag.dart';
 
 class User {
-  const User({
-    required this.userid,
-    required this.password,
-    required this.username,
-    required this.userpicture,
-  });
+  String userId = '';
+  String? userName;
+  File? userPicture;
+  String? userRole;
+  List<Tag>? userTags;
 
-  final String userid;
-  final String password;
-  final String username;
-  final File userpicture;
+  User(DocumentSnapshot doc) {
+    userId = doc['uid'];
+    userName = doc['name'];
+    userPicture = doc['picture'];
+    userRole = doc['urole'];
+    userTags = doc['tags'];
+  }
 }
