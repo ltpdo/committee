@@ -15,8 +15,8 @@ class tolkListItem extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) {
               return ChatScreen(
-                circleid: community.circleid,
-                circlename: community.circlename,
+                circleid: community.circleId,
+                circlename: community.circleName,
               );
             },
           ),
@@ -33,11 +33,11 @@ class tolkListItem extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  community.circlepicture,
+                  community.circlePicture,
                   SizedBox(width: 15),
-                  Text(community.circlename),
+                  Text(community.circleName),
                   SizedBox(width: 10),
-                  Text(community.circleid),
+                  Text(community.circleId),
                 ],
               ),
             ],

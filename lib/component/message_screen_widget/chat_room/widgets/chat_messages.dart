@@ -56,7 +56,7 @@ class ChatMessages extends StatelessWidget {
           itemCount: loadedMessages.length,
           itemBuilder: (ctx, index) {
             final chatMessage =
-                loadedMessages[index]?.data() ?? {}; // null安全なアクセス
+                loadedMessages[index]!.data() ?? {}; // null安全なアクセス
             final nextChatMessage = index + 1 < loadedMessages.length
                 ? loadedMessages[index + 1]?.data() ?? {}
                 : null;

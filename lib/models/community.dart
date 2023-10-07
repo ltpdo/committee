@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 
 class Community {
   const Community({
-    required this.circleid,
-    required this.circlename,
-    required this.circlepicture,
-    required this.circleplace,
-    required this.circlecontent,
-    required this.circleduration,
+    required this.circleId,
+    required this.circleName,
+    required this.circlePicture,
+    required this.circlePlace,
+    required this.circleContent,
+    required this.circleDuration,
   });
 
-  final String circleid;
-  final String circlename;
-  final String circleplace;
-  final String circlecontent;
-  final Icon circlepicture;
-  final String circleduration;
+  final String circleId;
+  final String circleName;
+  final String circlePlace;
+  final String circleContent;
+  final Icon circlePicture;
+  final String circleDuration;
 
   get amount => null;
 }
