@@ -8,6 +8,7 @@ class User {
   File? userPicture;
   String? userRole;
   List<Tag>? userTags;
+  String? hogehoge;
 
   User(DocumentSnapshot doc) {
     userId = doc['uid'];
@@ -15,5 +16,6 @@ class User {
     userPicture = doc['picture'];
     userRole = doc['urole'];
     userTags = doc['tags'];
+    hogehoge;
   }
 }
