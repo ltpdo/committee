@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:committee/bottom_navigation_bar/main_page_dtate.dart';
+import 'package:committee/view/select_tag_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -52,19 +52,21 @@ class RegisterModel {
           password: password!,
         );
         final User? user = userCredential.user;
-        final String uid = user!.uid;
+        final String uuid = user!.uid;
         //firestoreに追加
-        final doc = FirebaseFirestore.instance.collection('user');
-        await doc.add({
+        final doc = FirebaseFirestore.instance.collection('user').doc(uuid);
+        await doc.set({
           'email': user.email,
-          'uid': uid,
+          'uid': uuid,
           'name': "名無し",
           'urole': urole,
           'picture': "",
         });
         // ignore: use_build_context_synchronously
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return const MainPageState();
+          return SelectTagScreen(
+            urole: urole,
+          );
         }));
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
