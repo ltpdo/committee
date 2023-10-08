@@ -20,18 +20,18 @@ class belongToCommunityItem extends StatelessWidget {
           children: [
             IconTheme(
               data: IconThemeData(size: 30),
-              child: dummy_community[0].circlePicture,
+              child: const Icon(Icons.person),
             ),
             const SizedBox(width: 10),
             Text(
-              dummy_community[0].circleName,
+              dummyCommunity[0].name!,
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(width: 100),
             Column(
               children: [
-                Text('日時：' + dummy_community[0].circleDuration),
-                Text('場所：' + dummy_community[0].circlePlace),
+                Text('日時：' + dummyCommunity[0].activityTime!),
+                Text('場所：' + dummyCommunity[0].location!),
               ],
             ),
             const SizedBox(height: 4),

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:committee/models/tag.dart';
+import 'package:committee/models/user.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 //TagServiceを監視するプロバイダー
@@ -21,7 +22,8 @@ class TagService {
     map():    Listの各要素をTagに変換
     toList(): map()から帰ってきたIterableをListに変換する
     */
-    final List<Tag> tags = collection.docs.map((doc) => Tag(doc)).toList();
+    final List<Tag> tags =
+        collection.docs.map((doc) => Tag.fromDoc(doc)).toList();
     this.tags = tags;
   }
 }

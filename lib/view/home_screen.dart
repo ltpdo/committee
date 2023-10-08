@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  belongToCommunityList(communities: dummy_community),
+                  belongToCommunityList(communities: dummyCommunity),
                   SizedBox(height: 6),
                   ElevatedButton(
                     onPressed: () {},
@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  belongToCommunityList(communities: dummy_community),
+                  belongToCommunityList(communities: dummyCommunity),
                   SizedBox(height: 6),
                   ElevatedButton(
                     onPressed: () {},

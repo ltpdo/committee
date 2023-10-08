@@ -16,9 +16,9 @@ class SelectTagScreen extends ConsumerStatefulWidget {
 }
 
 class SelectTagScreenState extends ConsumerState<SelectTagScreen> {
-  List<String> userTags = [];
+  List<Tag> userTags = [];
 
-  MaterialStateProperty<Color> setButtonColor(List<String> userTags) {
+  MaterialStateProperty<Color> setButtonColor(List<Tag> userTags) {
     if (userTags.isEmpty) {
       return MaterialStateProperty.all(Colors.grey);
     } else {
@@ -83,7 +83,7 @@ class SelectTagScreenState extends ConsumerState<SelectTagScreen> {
                                         if (isSelected) {
                                           if (!tags.contains(tag.name) &&
                                               userTags.length < 3) {
-                                            userTags.add(tag.name!);
+                                            userTags.add(tag);
                                           } else {
                                             return;
                                           }
