@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:committee/models/tag.dart';
-import 'package:committee/models/user.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 //TagServiceを監視するプロバイダー
