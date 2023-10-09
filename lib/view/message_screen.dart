@@ -16,7 +16,7 @@ class MessageScreen extends StatelessWidget {
           children: [
             Expanded(
               child: TolkList(
-                interlocuter: dummy_community,
+                interlocuter: dummyCommunity,
                 onRemoveTolk: (community) {},
               ),
             ),

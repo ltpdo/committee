@@ -21,7 +21,8 @@ class TagService {
     map():    Listの各要素をTagに変換
     toList(): map()から帰ってきたIterableをListに変換する
     */
-    final List<Tag> tags = collection.docs.map((doc) => Tag(doc)).toList();
+    final List<Tag> tags =
+        collection.docs.map((doc) => Tag.fromDoc(doc)).toList();
     this.tags = tags;
   }
 }

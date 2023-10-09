@@ -1,21 +1,27 @@
-import 'package:flutter/material.dart';
+import 'package:committee/models/tag.dart';
 
 class Community {
-  const Community({
-    required this.circleId,
-    required this.circleName,
-    required this.circlePicture,
-    required this.circlePlace,
-    required this.circleContent,
-    required this.circleDuration,
+  final String? circleId;
+  String? name;
+  List<Tag>? tags;
+  String? location;
+  String? content;
+  String? activityTime;
+  List<String>? members;
+  List<String>? representative;
+  String? picture;
+  String? url;
+
+  Community({
+    this.circleId,
+    this.name,
+    this.tags,
+    this.location,
+    this.content,
+    this.activityTime,
+    this.members,
+    this.representative,
+    this.picture,
+    this.url,
   });
-
-  final String circleId;
-  final String circleName;
-  final String circlePlace;
-  final String circleContent;
-  final Icon circlePicture;
-  final String circleDuration;
-
-  get amount => null;
 }

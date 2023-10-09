@@ -20,9 +20,9 @@ class belongToCommunityList extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            belongToCommunityItem(communities: dummy_community),
-            belongToCommunityItem(communities: dummy_community),
-            belongToCommunityItem(communities: dummy_community),
+            belongToCommunityItem(communities: dummyCommunity),
+            belongToCommunityItem(communities: dummyCommunity),
+            belongToCommunityItem(communities: dummyCommunity),
           ],
         ),
       ),

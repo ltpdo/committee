@@ -1,19 +1,21 @@
-import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:committee/models/tag.dart';
 
 class User {
-  String userId = '';
-  String? userName;
-  File? userPicture;
-  String? userRole;
-  List<Tag>? userTags;
+  String? email;
+  String? name;
+  String? picture;
+  List<Tag>? tags;
+  final String? uid;
+  final String? urole;
+  String? content;
 
-  User(DocumentSnapshot doc) {
-    userId = doc['uid'];
-    userName = doc['name'];
-    userPicture = doc['picture'];
-    userRole = doc['urole'];
-    userTags = doc['tags'];
-  }
+  User({
+    this.email,
+    this.name,
+    this.picture,
+    this.tags,
+    this.uid,
+    this.urole,
+    this.content,
+  });
 }
