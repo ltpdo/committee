@@ -4,8 +4,8 @@ import 'package:committee/models/community.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class belongToCommunityList extends StatelessWidget {
-  const belongToCommunityList({
+class CommunitiesList extends StatelessWidget {
+  const CommunitiesList({
     Key? key,
   }) : super(key: key);
 
@@ -61,13 +61,15 @@ class belongToCommunityList extends StatelessWidget {
 
         print(authenticatedUser.uid);
 
+        print(authenticatedUser.uid);
+
         return Column(
           children: [
             Container(
               width: double.infinity,
-              height: 150,
+              height: 600,
               child: ListView.builder(
-                itemCount: communityList.length > 5 ? 5 : communityList.length,
+                itemCount: communityList.length,
                 itemBuilder: (context, index) {
                   return belongToCommunityItem(
                     communities: communityList,

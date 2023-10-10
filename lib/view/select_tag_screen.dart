@@ -1,9 +1,10 @@
 import 'package:committee/models/tag.dart';
 import 'package:committee/provider/tag_service.dart';
 import 'package:committee/provider/user_service.dart';
-import 'package:committee/view/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../bottom_navigation_bar/main_page_dtate.dart';
 
 class SelectTagScreen extends ConsumerStatefulWidget {
   final String urole;
@@ -128,7 +129,7 @@ class SelectTagScreenState extends ConsumerState<SelectTagScreen> {
                             .registerTags(userTags)
                             .then((_) => Navigator.of(context)
                                     .push(MaterialPageRoute(builder: (context) {
-                                  return HomeScreen();
+                                  return MainPageState();
                                 })));
                   },
                   style: ButtonStyle(

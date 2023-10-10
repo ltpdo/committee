@@ -1,3 +1,5 @@
+import 'package:committee/component/community_screen/communities_List/communitiesList.dart';
+import 'package:committee/component/community_screen/communities_List/communitiesList_screen.dart';
 import 'package:committee/component/home_screen_widget/belong_to_community_list/belong_to_community_list.dart';
 import 'package:committee/data/dummy_data.dart';
 import 'package:flutter/material.dart';
@@ -42,10 +44,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  belongToCommunityList(communities: dummyCommunity),
+                  belongToCommunityList(),
                   SizedBox(height: 6),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return CommunitiesListScreen();
+                          },
+                        ),
+                      );
+                    },
                     child: Text('もっと見る'),
                   ),
                 ],
@@ -65,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  belongToCommunityList(communities: dummyCommunity),
+                  belongToCommunityList(),
                   SizedBox(height: 6),
                   ElevatedButton(
                     onPressed: () {},
