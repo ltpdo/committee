@@ -1,8 +1,6 @@
 import 'package:committee/component/community_screen/community_Detail/communityDetail.dart';
 import 'package:committee/models/community.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:committee/data/dummy_data.dart';
 
 class belongToCommunityItem extends StatelessWidget {
   const belongToCommunityItem({
