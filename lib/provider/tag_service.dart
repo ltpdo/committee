@@ -4,12 +4,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 //TagServiceを監視するプロバイダー
 final tagServiceProvider = Provider((ref) {
-  return TagService();
+  return TagService(ref: ref);
 });
 
 //Tagに関するロジックを格納するクラス
 class TagService {
+  Ref ref;
   List<Tag> tags = [];
+  TagService({required this.ref});
 
   //データベースから全てのタグを取得するメソッド
   Future<void> fetchTags() async {

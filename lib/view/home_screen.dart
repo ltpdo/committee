@@ -1,19 +1,23 @@
 import 'package:committee/component/community_screen/communities_List/communitiesList.dart';
 import 'package:committee/component/community_screen/communities_List/communitiesList_screen.dart';
 import 'package:committee/component/home_screen_widget/belong_to_community_list/belong_to_community_list.dart';
+import 'package:committee/component/home_screen_widget/recommended_community_list/recommendedCommunity_list.dart';
 import 'package:committee/data/dummy_data.dart';
+import 'package:committee/models/community.dart';
+import 'package:committee/provider/user_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() {
+  ConsumerState<HomeScreen> createState() {
     return _HomeScreenState();
   }
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -75,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  belongToCommunityList(),
+                  RecommendedCommunityList(),
                   SizedBox(height: 6),
                   ElevatedButton(
                     onPressed: () {},
