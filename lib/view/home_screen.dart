@@ -3,8 +3,6 @@ import 'package:committee/component/community_screen/communities_List/communitie
 import 'package:committee/component/home_screen_widget/belong_to_community_list/belong_to_community_list.dart';
 import 'package:committee/component/home_screen_widget/recommended_community_list/recommendedCommunity_list.dart';
 import 'package:committee/data/dummy_data.dart';
-import 'package:committee/models/community.dart';
-import 'package:committee/provider/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
