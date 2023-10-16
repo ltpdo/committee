@@ -18,6 +18,8 @@ class SelectTagScreen extends ConsumerStatefulWidget {
 
 class SelectTagScreenState extends ConsumerState<SelectTagScreen> {
   List<Tag> userTags = [];
+  List<Tag> tags = [];
+  late Future<void> _data;
 
   MaterialStateProperty<Color> setButtonColor(List<Tag> userTags) {
     if (userTags.isEmpty) {
@@ -27,9 +29,20 @@ class SelectTagScreenState extends ConsumerState<SelectTagScreen> {
     }
   }
 
+  Future<void> _getTagData() async {
+    return await ref.read(tagServiceProvider).fetchTags().then((_) {
+      tags = ref.watch(tagServiceProvider).tags;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _data = _getTagData();
+  }
+
   @override
   Widget build(BuildContext context) {
-    List tags = [];
     final Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
@@ -64,10 +77,7 @@ class SelectTagScreenState extends ConsumerState<SelectTagScreen> {
                   height: size.height / 2,
                   child: SingleChildScrollView(
                     child: FutureBuilder(
-                        future:
-                            ref.watch(tagServiceProvider).fetchTags().then((_) {
-                          tags = ref.watch(tagServiceProvider).tags;
-                        }),
+                        future: _data,
                         builder: (BuildContext context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.done) {
@@ -78,7 +88,7 @@ class SelectTagScreenState extends ConsumerState<SelectTagScreen> {
                                     padding: const EdgeInsets.all(5),
                                     child: FilterChip(
                                       backgroundColor: const Color(0xd9d9d9d9),
-                                      selected: userTags.contains(tag.name),
+                                      selected: userTags.contains(tag),
                                       selectedColor: Colors.red,
                                       onSelected: (isSelected) {
                                         if (isSelected) {
@@ -90,7 +100,7 @@ class SelectTagScreenState extends ConsumerState<SelectTagScreen> {
                                           }
                                         } else {
                                           userTags.removeWhere((element) {
-                                            return element == tag.name;
+                                            return element == tag;
                                           });
                                         }
                                         setState(() {});

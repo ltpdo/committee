@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:committee/models/tag.dart';
 
 class Community {
@@ -24,4 +25,13 @@ class Community {
     this.picture,
     this.url,
   });
+
+  Community.fromDoc(QueryDocumentSnapshot<Map<String, dynamic>> doc)
+      : circleId = doc.id,
+        name = doc['name'],
+        activityTime = doc['activityTime'],
+        content = doc['content'],
+        location = doc['location'],
+        members = doc['members'].cast<String>() ?? [],
+        tags = doc['tags'].cast<Tag>() ?? [];
 }
