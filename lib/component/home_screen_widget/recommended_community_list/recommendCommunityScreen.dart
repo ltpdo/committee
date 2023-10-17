@@ -4,8 +4,8 @@ import 'package:committee/provider/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class RecommendedCommunityList extends ConsumerStatefulWidget {
-  const RecommendedCommunityList({
+class RecommendCommunityScreen extends ConsumerStatefulWidget {
+  const RecommendCommunityScreen({
     super.key,
   });
 
@@ -16,7 +16,7 @@ class RecommendedCommunityList extends ConsumerStatefulWidget {
 }
 
 class RecommendedCommunityListState
-    extends ConsumerState<RecommendedCommunityList> {
+    extends ConsumerState<RecommendCommunityScreen> {
   List<Community> communities = [];
   late Future<void> _data;
   Future<void> _getCommunityData() async {
@@ -34,12 +34,15 @@ class RecommendedCommunityListState
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return WillPopScope(
+      onWillPop: () async => true,
       // スクロール可能な高さ
-      width: double.infinity,
-      height: 150,
-      child: SingleChildScrollView(
-        child: FutureBuilder(
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: true,
+          title: const Text('おすすめのコミュニティ'),
+        ),
+        body: FutureBuilder(
           future: _data,
           builder: (BuildContext context, snapshot) {
             if (snapshot.hasData) {
