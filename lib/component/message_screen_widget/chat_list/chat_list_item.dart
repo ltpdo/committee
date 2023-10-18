@@ -36,8 +36,6 @@ class tolkListItem extends StatelessWidget {
                   const Icon(Icons.person),
                   SizedBox(width: 15),
                   Text(community.name!),
-                  SizedBox(width: 10),
-                  Text(community.circleId!),
                 ],
               ),
             ],

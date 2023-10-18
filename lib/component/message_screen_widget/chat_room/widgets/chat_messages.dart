@@ -15,18 +15,6 @@ class ChatMessages extends StatelessWidget {
 
     String _authUid = authenticatedUser.uid;
 
-    /*
-    final db = FirebaseFirestore.instance;
-    final docRef = db.collection("user").doc("aOW6mwQiEuPMvDUKzolj");
-    docRef.get().then(
-      (DocumentSnapshot doc) {
-        final data = doc.data() as Map<String, dynamic>;
-        print(data);
-      },
-      onError: (e) => print("Error getting document: $e"),
-    );
-    */
-
     return StreamBuilder(
       stream: FirebaseFirestore.instance
           .collection('chat')

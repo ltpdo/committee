@@ -26,7 +26,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.circlename + " ID:" + widget.circleid),
+        title: Text(widget.circlename),
       ),
       body: Column(
         children: [
