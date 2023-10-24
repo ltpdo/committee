@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:committee/view/register_name.dart';
 import 'package:committee/view/select_tag_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 class RegisterModel {
   String? email;
   String? password;
+  String? name;
 
   void setEmail(String email) {
     this.email = email;
@@ -13,6 +15,10 @@ class RegisterModel {
 
   void setPassword(String password) {
     this.password = password;
+  }
+
+  void setName(String name) {
+    this.name = name;
   }
 
   void _errorDialog(BuildContext context, String message) {
@@ -58,13 +64,12 @@ class RegisterModel {
         await doc.set({
           'email': user.email,
           'uid': uuid,
-          'name': "名無し",
           'urole': urole,
           'picture': "",
         });
         // ignore: use_build_context_synchronously
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return SelectTagScreen(
+          return RegisterName(
             urole: urole,
           );
         }));
@@ -81,5 +86,28 @@ class RegisterModel {
         _errorDialog(context, '予期せぬエラーが発生しました。\nお手数ですが、もう一度やり直してください。');
       }
     }
+  }
+
+  Future registerName(BuildContext context, String urole) async {
+    //現在ログインしているユーザーのユーザーIDを取得する
+    final String? uuid = FirebaseAuth.instance.currentUser?.uid.toString();
+    //データベースからユーザーIDを探す
+    final doc = FirebaseFirestore.instance.collection('user').doc(uuid);
+    try {
+      if (name != null) {
+        await doc.update({'name': name});
+      } else {
+        await doc.update({'name': '名無し'});
+      }
+    } catch (e) {
+      // ignore: use_build_context_synchronously
+      _errorDialog(context, 'エラーが発生しました');
+    }
+    // ignore: use_build_context_synchronously
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return SelectTagScreen(
+        urole: urole,
+      );
+    }));
   }
 }
