@@ -1,3 +1,4 @@
+import 'package:committee/component/account_screem_widget/sign_out.dart';
 import 'package:flutter/material.dart';
 import 'package:committee/component/account_screem_widget/paswordchaging_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -137,17 +138,7 @@ class AccountScreen extends StatelessWidget {
                 width: 250,
                 height: 70,
                 alignment: Alignment.center,
-                child: TextButton(
-                  onPressed: () {}, //ボタンを押した後の処理
-
-                  style: TextButton.styleFrom(
-                    foregroundColor: const Color.fromRGBO(233, 50, 5, 0.705),
-                    textStyle: const TextStyle(
-                      fontSize: 30,
-                    ),
-                  ),
-                  child: const Text('サインアウト'),
-                ),
+                child: const Sign_out(),
               ),
             ],
           ),
