@@ -5,11 +5,15 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('コミティ'),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: const Text('コミティ'),
+        ),
+        body: const Center(child: Text('検索', style: TextStyle(fontSize: 32.0))),
       ),
-      body: const Center(child: Text('検索', style: TextStyle(fontSize: 32.0))),
     );
   }
 }
