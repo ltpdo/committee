@@ -41,6 +41,7 @@ class belongToCommunityList extends StatelessWidget {
         List<Community> communityList =
             snapshot.data!.docs.map((DocumentSnapshot doc) {
           Map<String, dynamic>? data = doc.data() as Map<String, dynamic>;
+          List<String> members = List<String>.from(data['members']);
           return Community(
             // コミュニティのデータを取得してCommunityオブジェクトに変換
             // 必要に応じてCommunityモデルのコンストラクタを変更してください
@@ -49,13 +50,7 @@ class belongToCommunityList extends StatelessWidget {
             content: data['content'],
             activityTime: data['activityTime'],
             location: data['location'],
-            /*
-            tags: data['tags'],
-            members: data['members'],
-            url: "abc",
-            picture: "",
-            representative: data['members'],
-            */
+            members: members,
           );
         }).toList();
 
