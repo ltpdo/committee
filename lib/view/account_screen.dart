@@ -138,7 +138,7 @@ class AccountScreen extends StatelessWidget {
                 width: 250,
                 height: 70,
                 alignment: Alignment.center,
-                child: const Sign_out(),
+                child: const SignOut(),
               ),
             ],
           ),
