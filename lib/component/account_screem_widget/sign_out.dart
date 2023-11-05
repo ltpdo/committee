@@ -2,16 +2,19 @@ import 'package:committee/view/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class SignOut extends StatelessWidget {
-  const SignOut({super.key});
+class Sign_out extends StatelessWidget {
+  const Sign_out({super.key});
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
         FirebaseAuth.instance.signOut();
-        Navigator.pop(
+        Navigator.push(
           context,
+          MaterialPageRoute(
+            builder: (context) => const Welcome(),
+          ),
         );
       },
       style: TextButton.styleFrom(
