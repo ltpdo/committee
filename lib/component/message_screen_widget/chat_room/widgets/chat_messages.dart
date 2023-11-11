@@ -19,7 +19,7 @@ class ChatMessages extends StatelessWidget {
       stream: FirebaseFirestore.instance
           .collection('chat')
           .where('to', isEqualTo: circleid)
-          .where('uid', isEqualTo: _authUid)
+          //.where('uid', isEqualTo: _authUid)
           .orderBy(
             'createdAt',
             descending: true,

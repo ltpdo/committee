@@ -19,20 +19,20 @@ class CommunitiesListScreen extends StatelessWidget {
               color: Colors.red,
               child: Column(
                 children: [
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Title(
                     color: Colors.black,
-                    child: Text(
+                    child: const Text(
                       '所属しているコミュニティ',
                     ),
                   ),
-                  SizedBox(height: 20),
-                  CommunitiesList(),
-                  SizedBox(height: 6),
+                  const SizedBox(height: 20),
+                  const CommunitiesList(),
+                  const SizedBox(height: 6),
                 ],
               ),
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
           ],
         ),
       ),
