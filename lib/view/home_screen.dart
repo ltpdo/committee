@@ -1,5 +1,6 @@
 import 'package:committee/component/community_screen/communities_List/communitiesList_screen.dart';
 import 'package:committee/component/home_screen_widget/belong_to_community_list/belong_to_community_list.dart';
+import 'package:committee/component/home_screen_widget/createCommunity.dart';
 import 'package:committee/component/home_screen_widget/recommended_community_list/recommendCommunityScreen.dart';
 import 'package:committee/component/home_screen_widget/recommended_community_list/recommendedCommunity_list.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           title: const Text('コミティ'),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const CreateCommunityScreen();
+                    },
+                  ),
+                );
+              },
               icon: const Icon(Icons.add),
             ),
           ],
@@ -45,14 +54,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  belongToCommunityList(),
+                  const belongToCommunityList(),
                   SizedBox(height: 6),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) {
-                            return CommunitiesListScreen();
+                            return const CommunitiesListScreen();
                           },
                         ),
                       );
