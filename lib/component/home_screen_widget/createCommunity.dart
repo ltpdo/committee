@@ -48,7 +48,7 @@ class _CreateCommunityScreenState extends State<CreateCommunityScreen> {
     FirebaseFirestore.instance.collection('community').add({
       'name': _isNameController.text,
       'content': _isContentController.text,
-      'activity_time': _isActivityTimeController.text,
+      'activityTime': _isActivityTimeController.text,
       'location': _isLocationController.text,
       'tags': [
         _istag1Controller.text,

@@ -21,7 +21,7 @@ class CommunitiesList extends StatelessWidget {
           .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         }
 
         if (snapshot.hasError) {
@@ -31,7 +31,7 @@ class CommunitiesList extends StatelessWidget {
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
           return Container(
             width: double.infinity,
-            child: Center(
+            child: const Center(
               child: Text('所属しているコミュニティはありません'),
             ),
           );
@@ -59,9 +59,7 @@ class CommunitiesList extends StatelessWidget {
           );
         }).toList();
 
-        print(authenticatedUser.uid);
-
-        print(authenticatedUser.uid);
+        print(communityList.length);
 
         return Column(
           children: [
