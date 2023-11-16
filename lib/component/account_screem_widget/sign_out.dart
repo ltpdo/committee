@@ -25,12 +25,21 @@ class SignOut extends StatelessWidget {
                   TextButton(
                     child: const Text("OK"),
                     onPressed: () async {
+                      BuildContext currentContext =
+                          context; // 非同期処理の前にBuildContextを保存
+
                       await FirebaseAuth.instance.signOut();
-                      () => Navigator.pop(context);
-                      () => Navigator.push(
-                          context,
+
+                      // 非同期処理が完了した後に保存したBuildContextを使用
+                      Future.delayed(Duration.zero, () {
+                        Navigator.pop(currentContext); // 前の画面に戻る
+                        Navigator.push(
+                          currentContext,
                           MaterialPageRoute(
-                              builder: (context) => const Welcome()));
+                            builder: (context) => const Welcome(),
+                          ),
+                        ); // Welcome画面に遷移
+                      });
                     },
                   ),
                 ],
