@@ -55,4 +55,15 @@ class UserService {
       communities = [];
     }
   }
+
+  Future<void> searchCommunity(String? name) async {
+    final snapshot = FirebaseFirestore.instance.collection('community');
+    final QuerySnapshot<Map<String, dynamic>>? result;
+    if (name == "") {
+      result = await snapshot.get();
+    } else {
+      result = await snapshot.where('name', isEqualTo: name).get();
+    }
+    communities = result.docs.map((doc) => Community.fromDoc(doc)).toList();
+  }
 }
