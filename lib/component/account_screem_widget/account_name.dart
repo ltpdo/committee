@@ -21,18 +21,18 @@ import 'package:committee/view/welcome.dart';
 //          return Text("データを読み取る際にエラーが発生しました: ${snapshot.error}");
 //        } else {
 //          if (snapshot.hasData) {
- //           var data = snapshot.data as String;
+//           var data = snapshot.data as String;
 
 //            var name = data.value;
-  //          return Text(
-    //          name ?? "No Name",
- //             style: const TextStyle(fontSize: 20),
- //           );
- //         } else {
- //           return Text("データはありません");
- //         }
+//          return Text(
+//          name ?? "No Name",
+//             style: const TextStyle(fontSize: 20),
+//           );
+//         } else {
+//           return Text("データはありません");
+//         }
 //        }
- //     },
- //   );
+//     },
+//   );
 //  }
 //}
