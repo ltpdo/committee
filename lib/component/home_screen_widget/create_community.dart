@@ -62,7 +62,7 @@ class _CreateCommunityScreenState extends State<CreateCommunityScreen> {
         print(e);
       }
     } else {
-      downloadURL = null;
+      downloadURL = "";
     }
 
     final _user = FirebaseAuth.instance.currentUser!;

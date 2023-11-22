@@ -1,4 +1,3 @@
-import 'package:committee/bottom_navigation_bar/main_page_dtate.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -49,10 +48,6 @@ class SignInModel {
           email: email!,
           password: password!,
         );
-        // ignore: use_build_context_synchronously
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return const MainPageState();
-        }));
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
           // ignore: use_build_context_synchronously

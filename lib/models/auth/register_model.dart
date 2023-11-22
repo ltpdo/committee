@@ -1,13 +1,16 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:committee/view/register_name.dart';
-import 'package:committee/view/select_tag_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:profile_image_selector/profile_image_selector.dart';
 
 class RegisterModel {
   String? email;
   String? password;
   String? name;
+  String? downloadURL;
 
   void setEmail(String email) {
     this.email = email;
@@ -67,12 +70,6 @@ class RegisterModel {
           'urole': urole,
           'picture': "",
         });
-        // ignore: use_build_context_synchronously
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return RegisterName(
-            urole: urole,
-          );
-        }));
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           // ignore: use_build_context_synchronously
@@ -88,26 +85,36 @@ class RegisterModel {
     }
   }
 
-  Future registerName(BuildContext context, String urole) async {
+  Future registerNameAndPicture(
+      BuildContext context, ProfileImageSelector userImage) async {
+    //Firebase Storageに画像をアップロードする
+    if (userImage.imageFile != null) {
+      final Reference storageRef = FirebaseStorage.instance.ref();
+      final Reference communityImageRef = storageRef.child("$name.png");
+      final File file = File(userImage.imageFile!.path);
+      try {
+        await communityImageRef.putFile(file);
+        downloadURL = await communityImageRef.getDownloadURL();
+      } catch (e) {
+        print(e);
+      }
+    } else {
+      downloadURL = "";
+    }
+
     //現在ログインしているユーザーのユーザーIDを取得する
     final String? uuid = FirebaseAuth.instance.currentUser?.uid.toString();
     //データベースからユーザーIDを探す
     final doc = FirebaseFirestore.instance.collection('user').doc(uuid);
     try {
       if (name != null) {
-        await doc.update({'name': name});
+        await doc.update({'name': name, 'picture': downloadURL});
       } else {
-        await doc.update({'name': '名無し'});
+        await doc.update({'name': '名無し', 'picture': downloadURL});
       }
     } catch (e) {
       // ignore: use_build_context_synchronously
       _errorDialog(context, 'エラーが発生しました');
     }
-    // ignore: use_build_context_synchronously
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return SelectTagScreen(
-        urole: urole,
-      );
-    }));
   }
 }
