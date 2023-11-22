@@ -1,6 +1,7 @@
 import 'package:committee/component/community_screen/community_Detail/communityDetail.dart';
 import 'package:committee/models/community.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class belongToCommunityItem extends StatelessWidget {
   const belongToCommunityItem({

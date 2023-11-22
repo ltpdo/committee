@@ -2,6 +2,7 @@ import 'package:committee/component/account_screem_widget/sign_out.dart';
 import 'package:flutter/material.dart';
 import 'package:committee/component/account_screem_widget/paswordchaging_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({Key? key}) : super(key: key);
@@ -17,7 +18,30 @@ class AccountScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: const Text('コミティ'),
+          centerTitle: true,
+          title: RichText(
+            text: TextSpan(
+              style: const TextStyle(
+                fontSize: 28,
+                color: Color.fromARGB(255, 0, 0, 0),
+              ),
+              children: [
+                TextSpan(
+                  text: 'コミティ',
+                  style: GoogleFonts.zenMaruGothic(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const WidgetSpan(
+                  child: Icon(
+                    Icons.manage_accounts,
+                    size: 36,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
         body: Form(
           child: Column(

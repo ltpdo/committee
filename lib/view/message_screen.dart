@@ -3,6 +3,7 @@ import 'package:committee/models/community.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../component/message_screen_widget/chat_list/chat_list_list.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MessageScreen extends StatefulWidget {
   const MessageScreen({Key? key}) : super(key: key);
@@ -31,7 +32,30 @@ class _MessageScreenState extends State<MessageScreen> {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Text('メッセージ'),
+          centerTitle: true,
+          title: RichText(
+            text: TextSpan(
+              style: const TextStyle(
+                fontSize: 28,
+                color: Color.fromARGB(255, 0, 0, 0),
+              ),
+              children: [
+                TextSpan(
+                  text: 'メッセージ',
+                  style: GoogleFonts.zenMaruGothic(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const WidgetSpan(
+                  child: Icon(
+                    Icons.mail,
+                    size: 36,
+                  ),
+                ),
+              ],
+            ),
+          ),
           actions: [
             Switch(
               value: _switchValue,
