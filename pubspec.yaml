@@ -44,6 +44,7 @@ dependencies:
   flutter_datetime_picker_plus: ^2.1.0
   profile_image_selector: ^0.0.1
   firebase_storage: ^11.5.1
+  google_fonts: ^6.1.0
 
 dev_dependencies:
   flutter_test:

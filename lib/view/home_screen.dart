@@ -5,6 +5,7 @@ import 'package:committee/component/home_screen_widget/recommended_community_lis
 import 'package:committee/component/home_screen_widget/recommended_community_list/recommendedCommunity_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -23,7 +24,30 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: const Text('コミティ'),
+          centerTitle: true,
+          title: RichText(
+            text: TextSpan(
+              style: const TextStyle(
+                fontSize: 28,
+                color: Color.fromARGB(255, 0, 0, 0),
+              ),
+              children: [
+                TextSpan(
+                  text: 'コミティ',
+                  style: GoogleFonts.zenMaruGothic(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const WidgetSpan(
+                  child: Icon(
+                    Icons.supervised_user_circle_rounded,
+                    size: 36,
+                  ),
+                ),
+              ],
+            ),
+          ),
           actions: [
             IconButton(
               onPressed: () {
