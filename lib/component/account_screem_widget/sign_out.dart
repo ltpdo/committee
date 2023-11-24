@@ -33,11 +33,12 @@ class SignOut extends StatelessWidget {
                       // 非同期処理が完了した後に保存したBuildContextを使用
                       Future.delayed(Duration.zero, () {
                         Navigator.pop(currentContext); // 前の画面に戻る
-                        Navigator.push(
+                        Navigator.pushAndRemoveUntil(
                           currentContext,
                           MaterialPageRoute(
                             builder: (context) => const Welcome(),
                           ),
+                          (_) => false,
                         ); // Welcome画面に遷移
                       });
                     },
