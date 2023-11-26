@@ -29,21 +29,32 @@ class RecommendedCommunityItems extends StatelessWidget {
               );
             },
             child: Card(
+              color: Colors.transparent,
+              elevation: 1,
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20,
-                  vertical: 16,
+                  vertical: 50,
                 ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const IconTheme(
-                      data: IconThemeData(size: 30),
-                      child: Icon(Icons.person),
-                    ),
+                    if (community.picture == "" ||
+                        community.picture == null) ...{
+                      const IconTheme(
+                        data: IconThemeData(size: 350),
+                        child: Icon(Icons.account_box),
+                      ),
+                    } else ...{
+                      SizedBox(
+                        width: 30,
+                        height: 30,
+                        child: Image.network(community.picture ?? ""),
+                      )
+                    },
                     const SizedBox(width: 10),
                     SizedBox(
-                      width: size.width * 2 / 5,
+                      width: size.width * 4 / 5,
                       child: Text(
                         community.name!,
                         overflow: TextOverflow.ellipsis,
@@ -52,7 +63,10 @@ class RecommendedCommunityItems extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        Text('日時：${community.activityTime!}'),
+                        Text(
+                          '日時：${community.activityTime!}',
+                          style: TextStyle(fontSize: 20),
+                        ),
                         Text('場所：${community.location!}'),
                       ],
                     ),

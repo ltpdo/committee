@@ -34,28 +34,21 @@ class RecommendedCommunityListState
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      // スクロール可能な高さ
-      width: double.infinity,
-      height: 150,
-      child: SingleChildScrollView(
-        child: FutureBuilder(
-          future: _data,
-          builder: (BuildContext context, snapshot) {
-            if (snapshot.hasData) {
-              return RecommendedCommunityItems(communities: communities);
-            } else if (snapshot.hasError) {
-              return const Center(
-                child: Text('エラーが発生しました'),
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          },
-        ),
-      ),
+    return FutureBuilder(
+      future: _data,
+      builder: (BuildContext context, snapshot) {
+        if (snapshot.hasData) {
+          return RecommendedCommunityItems(communities: communities);
+        } else if (snapshot.hasError) {
+          return const Center(
+            child: Text('エラーが発生しました'),
+          );
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
     );
   }
 }
