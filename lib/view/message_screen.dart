@@ -68,109 +68,75 @@ class _MessageScreenState extends State<MessageScreen> {
           ],
         ),
         body: _switchValue
-            ? StreamBuilder<QuerySnapshot>(
-                stream: FirebaseFirestore.instance
-                    .collection('community')
-                    .where('representaitive', arrayContains: _authUid)
-                    .snapshots(),
-                builder: (BuildContext context,
-                    AsyncSnapshot<QuerySnapshot> snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator();
-                  }
-
-                  if (snapshot.hasError) {
-                    return Text('Error: ${snapshot.error}');
-                  }
-
-                  if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                    return Container(
-                      width: double.infinity,
-                      child: const Center(
-                        child: Text('所属しているコミュニティはありません'),
-                      ),
-                    );
-                  }
-
-                  // snapshotからコミュニティのリストを作成
-                  List<Community> communityList =
-                      snapshot.data!.docs.map((DocumentSnapshot doc) {
-                    Map<String, dynamic>? data =
-                        doc.data() as Map<String, dynamic>;
-                    return Community(
-                      // コミュニティのデータを取得してCommunityオブジェクトに変換
-                      // 必要に応じてCommunityモデルのコンストラクタを変更してください
-                      circleId: doc.id,
-                      name: data['name'],
-                    );
-                  }).toList();
-
-                  return Scaffold(
-                    body: Column(
-                      children: [
-                        Expanded(
-                          child: TolkList(
-                            interlocuter: communityList,
-                            onRemoveTolk: (community) {},
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
+            ? _buildCommunityList(
+                'representaitive',
+                _authUid,
+                [Colors.deepPurple, Colors.deepOrange],
               )
-            : StreamBuilder<QuerySnapshot>(
-                stream: FirebaseFirestore.instance
-                    .collection('community')
-                    .where('members', arrayContains: _authUid)
-                    .snapshots(),
-                builder: (BuildContext context,
-                    AsyncSnapshot<QuerySnapshot> snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator();
-                  }
-
-                  if (snapshot.hasError) {
-                    return Text('Error: ${snapshot.error}');
-                  }
-
-                  if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                    return Container(
-                      width: double.infinity,
-                      child: const Center(
-                        child: Text('所属しているコミュニティはありません'),
-                      ),
-                    );
-                  }
-
-                  // snapshotからコミュニティのリストを作成
-                  List<Community> communityList =
-                      snapshot.data!.docs.map((DocumentSnapshot doc) {
-                    Map<String, dynamic>? data =
-                        doc.data() as Map<String, dynamic>;
-                    return Community(
-                      // コミュニティのデータを取得してCommunityオブジェクトに変換
-                      // 必要に応じてCommunityモデルのコンストラクタを変更してください
-                      circleId: doc.id,
-                      name: data['name'],
-                    );
-                  }).toList();
-
-                  return Scaffold(
-                    body: Column(
-                      children: [
-                        Expanded(
-                          child: TolkList(
-                            interlocuter: communityList,
-                            onRemoveTolk: (community) {},
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
+            : _buildCommunityList(
+                'members',
+                _authUid,
+                [Colors.deepPurple, Colors.deepOrange],
               ),
       ),
+    );
+  }
+
+  Widget _buildCommunityList(String field, String authUid, List<Color> colors) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection('community')
+          .where(field, arrayContains: authUid)
+          .snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        }
+
+        if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        }
+
+        if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+          return Container(
+            width: double.infinity,
+            child: const Center(
+              child: Text('所属しているコミュニティはありません'),
+            ),
+          );
+        }
+
+        List<Community> communityList =
+            snapshot.data!.docs.map((DocumentSnapshot doc) {
+          Map<String, dynamic>? data = doc.data() as Map<String, dynamic>;
+          return Community(
+            circleId: doc.id,
+            name: data['name'],
+          );
+        }).toList();
+
+        return Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: colors,
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: Scaffold(
+            body: Column(
+              children: [
+                Expanded(
+                  child: TolkList(
+                    interlocuter: communityList,
+                    onRemoveTolk: (community) {},
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

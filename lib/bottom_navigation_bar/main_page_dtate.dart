@@ -29,18 +29,27 @@ class _MainPageState extends State<MainPageState> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: _screens[_selectedIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'ホーム画面'),
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: '検索'),
-            BottomNavigationBarItem(icon: Icon(Icons.mail), label: 'メッセージ'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'アカウント'),
-          ],
-          type: BottomNavigationBarType.fixed,
-        ));
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.deepOrange, Colors.deepPurple],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
+      child: Scaffold(
+          body: _screens[_selectedIndex],
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: _selectedIndex,
+            onTap: _onItemTapped,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'ホーム画面'),
+              BottomNavigationBarItem(icon: Icon(Icons.search), label: '検索'),
+              BottomNavigationBarItem(icon: Icon(Icons.mail), label: 'メッセージ'),
+              BottomNavigationBarItem(icon: Icon(Icons.person), label: 'アカウント'),
+            ],
+            type: BottomNavigationBarType.fixed,
+          )),
+    );
   }
 }

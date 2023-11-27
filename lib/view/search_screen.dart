@@ -32,7 +32,7 @@ class SearchScreenState extends ConsumerState<SearchScreen> {
                 ),
                 children: [
                   TextSpan(
-                    text: 'コミティ',
+                    text: '検索',
                     style: GoogleFonts.zenMaruGothic(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
