@@ -71,18 +71,16 @@ class _MessageScreenState extends State<MessageScreen> {
             ? _buildCommunityList(
                 'representaitive',
                 _authUid,
-                [Colors.deepPurple, Colors.deepOrange],
               )
             : _buildCommunityList(
                 'members',
                 _authUid,
-                [Colors.deepPurple, Colors.deepOrange],
               ),
       ),
     );
   }
 
-  Widget _buildCommunityList(String field, String authUid, List<Color> colors) {
+  Widget _buildCommunityList(String field, String authUid) {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection('community')
@@ -98,9 +96,9 @@ class _MessageScreenState extends State<MessageScreen> {
         }
 
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return Container(
+          return const SizedBox(
             width: double.infinity,
-            child: const Center(
+            child: Center(
               child: Text('所属しているコミュニティはありません'),
             ),
           );
@@ -115,25 +113,17 @@ class _MessageScreenState extends State<MessageScreen> {
           );
         }).toList();
 
-        return Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: colors,
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-          child: Scaffold(
-            body: Column(
-              children: [
-                Expanded(
-                  child: TolkList(
-                    interlocuter: communityList,
-                    onRemoveTolk: (community) {},
-                  ),
+        return Scaffold(
+          backgroundColor: const Color.fromARGB(31, 199, 9, 9),
+          body: Column(
+            children: [
+              Expanded(
+                child: TolkList(
+                  interlocuter: communityList,
+                  onRemoveTolk: (community) {},
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         );
       },

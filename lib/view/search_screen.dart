@@ -21,51 +21,56 @@ class SearchScreenState extends ConsumerState<SearchScreen> {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            centerTitle: true,
-            title: RichText(
-              text: TextSpan(
-                style: const TextStyle(
-                  fontSize: 28,
-                  color: Color.fromARGB(255, 0, 0, 0),
-                ),
-                children: [
-                  TextSpan(
-                    text: '検索',
-                    style: GoogleFonts.zenMaruGothic(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const WidgetSpan(
-                    child: Icon(
-                      Icons.search,
-                      size: 36,
-                    ),
-                  ),
-                ],
+        backgroundColor: const Color.fromARGB(31, 199, 9, 9),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          centerTitle: true,
+          title: RichText(
+            text: TextSpan(
+              style: const TextStyle(
+                fontSize: 28,
+                color: Color.fromARGB(255, 0, 0, 0),
               ),
-            ),
-          ),
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextForm(
-                  name: '名前',
-                  color: Colors.red,
-                  controller: ref.watch(nameControllerProvider),
+                TextSpan(
+                  text: '検索',
+                  style: GoogleFonts.zenMaruGothic(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                SizedBox(
-                  height: size.height / 25,
-                ),
-                SearchButton(
-                  nameController: ref.watch(nameControllerProvider),
+                const WidgetSpan(
+                  child: Icon(
+                    Icons.search,
+                    size: 36,
+                  ),
                 ),
               ],
             ),
-          )),
+          ),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                color: Colors.white,
+                child: TextForm(
+                  name: '名前',
+                  color: const Color.fromARGB(255, 200, 54, 244),
+                  controller: ref.watch(nameControllerProvider),
+                ),
+              ),
+              SizedBox(
+                height: size.height / 25,
+              ),
+              SearchButton(
+                nameController: ref.watch(nameControllerProvider),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
