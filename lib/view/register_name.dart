@@ -1,7 +1,7 @@
+import 'package:committee/component/home_screen_widget/profile_image_selector.dart';
 import 'package:committee/models/auth/register_model.dart';
 import 'package:committee/view/select_tag_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:profile_image_selector/profile_image_selector.dart';
 
 class RegisterName extends StatefulWidget {
   final String urole;
