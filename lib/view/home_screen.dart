@@ -5,7 +5,6 @@ import 'package:committee/component/home_screen_widget/recommended_community_lis
 import 'package:committee/component/home_screen_widget/recommended_community_list/recommendedCommunity_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -16,38 +15,17 @@ class HomeScreen extends ConsumerStatefulWidget {
   }
 }
 
+//
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
+        backgroundColor: const Color.fromARGB(31, 199, 9, 9),
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          centerTitle: true,
-          title: RichText(
-            text: TextSpan(
-              style: const TextStyle(
-                fontSize: 28,
-                color: Color.fromARGB(255, 0, 0, 0),
-              ),
-              children: [
-                TextSpan(
-                  text: 'コミティ',
-                  style: GoogleFonts.zenMaruGothic(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const WidgetSpan(
-                  child: Icon(
-                    Icons.supervised_user_circle_rounded,
-                    size: 36,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          title: const Text('コミティ'),
           actions: [
             IconButton(
               onPressed: () {
@@ -63,70 +41,65 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             ),
           ],
         ),
-        body: Column(
-          children: [
-            Container(
-              color: Colors.red,
-              height: 265,
-              child: Column(
-                children: [
-                  SizedBox(height: 12),
-                  Title(
-                    color: Colors.black,
-                    child: Text(
-                      '所属しているコミュニティ',
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                height: 265,
+                child: Column(
+                  children: [
+                    SizedBox(height: 12),
+                    Title(
+                      color: Colors.black,
+                      child: Text(
+                        '所属しているコミュニティ',
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 20),
-                  const belongToCommunityList(),
-                  SizedBox(height: 6),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return const CommunitiesListScreen();
-                          },
-                        ),
-                      );
-                    },
-                    child: Text('もっと見る'),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 50),
-            Container(
-              color: Colors.blue,
-              height: 265,
-              child: Column(
-                children: [
-                  SizedBox(height: 12),
-                  Title(
-                    color: Colors.black,
-                    child: Text(
-                      'おすすめのコミュニティ',
+                    SizedBox(height: 20),
+                    const belongToCommunityList(),
+                    SizedBox(height: 6),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const CommunitiesListScreen();
+                            },
+                          ),
+                        );
+                      },
+                      child: Text('もっと見る'),
                     ),
-                  ),
-                  SizedBox(height: 20),
-                  RecommendedCommunityList(),
-                  SizedBox(height: 6),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return RecommendCommunityScreen();
-                          },
-                        ),
-                      );
-                    },
-                    child: Text('もっと見る'),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+              Container(
+                decoration: BoxDecoration(
+                  // 枠線
+                  border: Border.all(
+                    color: Color.fromARGB(255, 2, 2, 2),
+                  ),
+                ),
+              ),
+              SizedBox(height: 10),
+              Container(
+                child: Column(
+                  children: [
+                    SizedBox(height: 1),
+                    Title(
+                      color: Colors.black,
+                      child: Text(
+                        'おすすめのコミュニティ',
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    RecommendedCommunityList(),
+                    SizedBox(height: 6),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

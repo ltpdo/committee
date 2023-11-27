@@ -26,6 +26,7 @@ class RecommendedCommunityListState
         .then((_) => communities = ref.watch(userServiceProvider).communities);
   }
 
+//
   @override
   void initState() {
     super.initState();
