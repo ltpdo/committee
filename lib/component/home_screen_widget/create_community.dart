@@ -1,9 +1,13 @@
 import 'dart:io';
+import 'dart:typed_data';
+import 'dart:ui';
+import 'package:committee/component/home_screen_widget/profile_image_selector.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:profile_image_selector/profile_image_selector.dart';
+import 'package:flutter/rendering.dart';
+import 'package:path_provider/path_provider.dart';
 
 class CreateCommunityScreen extends StatefulWidget {
   const CreateCommunityScreen({super.key});
@@ -20,11 +24,7 @@ class _CreateCommunityScreenState extends State<CreateCommunityScreen> {
   final _istag1Controller = TextEditingController();
   final _istag2Controller = TextEditingController();
   final _istag3Controller = TextEditingController();
-  ProfileImageSelector communityImage = ProfileImageSelector(
-    size: 100,
-    icon: Icons.people,
-    backgroundColor: Colors.black12,
-  );
+  GlobalKey _key = GlobalKey();
   bool _isLoading = false;
 
   @override
@@ -39,7 +39,8 @@ class _CreateCommunityScreenState extends State<CreateCommunityScreen> {
     super.dispose();
   }
 
-  Future<void> _addCommunityToFirestore() async {
+  Future<void> _addCommunityToFirestore(
+      ProfileImageSelector communityImage) async {
     if (_isNameController.text.trim().isEmpty ||
         _isContentController.text.trim().isEmpty ||
         _isActivityTimeController.text.trim().isEmpty ||
@@ -54,7 +55,14 @@ class _CreateCommunityScreenState extends State<CreateCommunityScreen> {
       final Reference storageRef = FirebaseStorage.instance.ref();
       final Reference communityImageRef =
           storageRef.child("${_isNameController.text}.png");
-      final File file = File(communityImage.imageFile!.path);
+      final boundary =
+          _key.currentContext?.findRenderObject() as RenderRepaintBoundary?;
+      if (boundary == null) {
+        return;
+      }
+      final image = await boundary.toImage();
+      final byteData = await image.toByteData(format: ImageByteFormat.png);
+      final File file = await convertByteDataToFile(byteData!);
       try {
         await communityImageRef.putFile(file);
         downloadURL = await communityImageRef.getDownloadURL();
@@ -87,8 +95,31 @@ class _CreateCommunityScreenState extends State<CreateCommunityScreen> {
     });
   }
 
+  //ストレージ領域内のドキュメントのパスを取得する
+  Future<String> get getLocalPath async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
+  }
+
+  //ByteDataからFileにコンバートする
+  Future<File> convertByteDataToFile(ByteData data) async {
+    final path = await getLocalPath;
+    final imagePath = '$path/image.jpeg';
+    File imageFile = File(imagePath);
+
+    final buffer = data.buffer;
+    final localFile = await imageFile.writeAsBytes(
+        buffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
+    return localFile;
+  }
+
   @override
   Widget build(BuildContext context) {
+    ProfileImageSelector communityImage = ProfileImageSelector(
+      size: 100,
+      icon: Icons.people,
+      backgroundColor: Colors.black12,
+    );
     return WillPopScope(
       onWillPop: () async => true,
       child: Scaffold(
@@ -99,7 +130,7 @@ class _CreateCommunityScreenState extends State<CreateCommunityScreen> {
           SingleChildScrollView(
             child: Column(
               children: [
-                communityImage,
+                RepaintBoundary(key: _key, child: communityImage),
                 const SizedBox(
                   height: 5,
                 ),
@@ -188,7 +219,7 @@ class _CreateCommunityScreenState extends State<CreateCommunityScreen> {
                       setState(() {
                         _isLoading = true;
                       });
-                      await _addCommunityToFirestore().then((_) {
+                      await _addCommunityToFirestore(communityImage).then((_) {
                         setState(() {
                           _isLoading = false;
                         });

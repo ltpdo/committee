@@ -49,7 +49,9 @@ class RecommendedCommunityItems extends StatelessWidget {
                       SizedBox(
                         width: size.width / 1.1,
                         height: size.width / 1.1,
-                        child: Image.network(community.picture ?? ""),
+                        child: FittedBox(
+                            fit: BoxFit.contain,
+                            child: Image.network(community.picture ?? "")),
                       )
                     },
                     const SizedBox(width: 10),
