@@ -41,14 +41,14 @@ class RecommendedCommunityItems extends StatelessWidget {
                   children: [
                     if (community.picture == "" ||
                         community.picture == null) ...{
-                      const IconTheme(
-                        data: IconThemeData(size: 350),
-                        child: Icon(Icons.account_box),
+                      IconTheme(
+                        data: IconThemeData(size: size.width / 1.1),
+                        child: const Icon(Icons.account_box),
                       ),
                     } else ...{
                       SizedBox(
-                        width: 30,
-                        height: 30,
+                        width: size.width / 1.1,
+                        height: size.width / 1.1,
                         child: Image.network(community.picture ?? ""),
                       )
                     },

@@ -48,6 +48,7 @@ class UserService {
       print("エラーが発生しました。：" + e.message.toString());
     }
 
+    //クエリ実行結果によってcommunityの配列に結果を格納する
     if (querySnapshot != null) {
       communities =
           querySnapshot.docs.map((doc) => Community.fromDoc(doc)).toList();
