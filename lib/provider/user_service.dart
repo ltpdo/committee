@@ -52,6 +52,12 @@ class UserService {
     if (querySnapshot != null) {
       communities =
           querySnapshot.docs.map((doc) => Community.fromDoc(doc)).toList();
+      //所属済みなら表示するリストから削除する
+      for (int i = 0; i < communities.length; i++) {
+        if (communities[i].members!.contains(uuid)) {
+          communities.remove(communities[i]);
+        }
+      }
     } else {
       communities = [];
     }
