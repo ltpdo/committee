@@ -33,5 +33,6 @@ class Community {
         content = doc['content'],
         location = doc['location'],
         members = doc['members'].cast<String>() ?? [],
-        tags = doc['tags'].cast<Tag>() ?? [];
+        tags = doc['tags'].cast<Tag>() ?? [],
+        picture = doc['picture'] ?? "";
 }

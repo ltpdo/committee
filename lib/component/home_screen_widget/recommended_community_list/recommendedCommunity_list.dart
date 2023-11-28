@@ -41,8 +41,13 @@ class RecommendedCommunityListState
         if (snapshot.hasData) {
           return RecommendedCommunityItems(communities: communities);
         } else if (snapshot.hasError) {
-          return const Center(
-            child: Text('エラーが発生しました'),
+          return Center(
+            child: Column(
+              children: [
+                const Text('エラーが発生しました'),
+                Text(snapshot.error.toString()),
+              ],
+            ),
           );
         } else {
           return const Center(
