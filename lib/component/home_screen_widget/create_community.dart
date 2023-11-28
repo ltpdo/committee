@@ -54,7 +54,7 @@ class _CreateCommunityScreenState extends State<CreateCommunityScreen> {
     if (communityImage.imageFile != null) {
       final Reference storageRef = FirebaseStorage.instance.ref();
       final Reference communityImageRef =
-          storageRef.child("${_isNameController.text}.png");
+          storageRef.child("community/${_isNameController.text}.png");
       final boundary =
           _key.currentContext?.findRenderObject() as RenderRepaintBoundary?;
       if (boundary == null) {
