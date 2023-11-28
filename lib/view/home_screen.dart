@@ -1,10 +1,10 @@
 import 'package:committee/component/community_screen/communities_List/communitiesList_screen.dart';
 import 'package:committee/component/home_screen_widget/belong_to_community_list/belong_to_community_list.dart';
 import 'package:committee/component/home_screen_widget/create_community.dart';
-import 'package:committee/component/home_screen_widget/recommended_community_list/recommendCommunityScreen.dart';
 import 'package:committee/component/home_screen_widget/recommended_community_list/recommendedCommunity_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -15,7 +15,6 @@ class HomeScreen extends ConsumerStatefulWidget {
   }
 }
 
-//
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
@@ -25,7 +24,30 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         backgroundColor: const Color.fromARGB(31, 199, 9, 9),
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: const Text('コミティ'),
+          centerTitle: true,
+          title: RichText(
+            text: TextSpan(
+              style: const TextStyle(
+                fontSize: 28,
+                color: Color.fromARGB(255, 0, 0, 0),
+              ),
+              children: [
+                TextSpan(
+                  text: 'コミティ',
+                  style: GoogleFonts.zenMaruGothic(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const WidgetSpan(
+                  child: Icon(
+                    Icons.groups,
+                    size: 36,
+                  ),
+                ),
+              ],
+            ),
+          ),
           actions: [
             IconButton(
               onPressed: () {
@@ -44,20 +66,20 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: 265,
                 child: Column(
                   children: [
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     Title(
                       color: Colors.black,
-                      child: Text(
+                      child: const Text(
                         '所属しているコミュニティ',
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     const belongToCommunityList(),
-                    SizedBox(height: 6),
+                    const SizedBox(height: 6),
                     ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).push(
@@ -68,7 +90,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           ),
                         );
                       },
-                      child: Text('もっと見る'),
+                      child: const Text('もっと見る'),
                     ),
                   ],
                 ),
@@ -77,26 +99,24 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 decoration: BoxDecoration(
                   // 枠線
                   border: Border.all(
-                    color: Color.fromARGB(255, 2, 2, 2),
+                    color: const Color.fromARGB(255, 2, 2, 2),
                   ),
                 ),
               ),
-              SizedBox(height: 10),
-              Container(
-                child: Column(
-                  children: [
-                    SizedBox(height: 1),
-                    Title(
-                      color: Colors.black,
-                      child: Text(
-                        'おすすめのコミュニティ',
-                      ),
+              const SizedBox(height: 10),
+              Column(
+                children: [
+                  const SizedBox(height: 1),
+                  Title(
+                    color: Colors.black,
+                    child: const Text(
+                      'おすすめのコミュニティ',
                     ),
-                    SizedBox(height: 20),
-                    RecommendedCommunityList(),
-                    SizedBox(height: 6),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 20),
+                  const RecommendedCommunityList(),
+                  const SizedBox(height: 6),
+                ],
               ),
             ],
           ),

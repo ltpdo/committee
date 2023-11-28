@@ -16,6 +16,7 @@ class AccountScreen extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
+        backgroundColor: const Color.fromARGB(31, 199, 9, 9),
         appBar: AppBar(
           automaticallyImplyLeading: false,
           centerTitle: true,
@@ -35,7 +36,7 @@ class AccountScreen extends StatelessWidget {
                 ),
                 const WidgetSpan(
                   child: Icon(
-                    Icons.manage_accounts,
+                    Icons.settings,
                     size: 36,
                   ),
                 ),
@@ -47,76 +48,57 @@ class AccountScreen extends StatelessWidget {
           child: Column(
             children: <Widget>[
               //始まり
-              Container(
-                width: 130,
-                margin: const EdgeInsets.fromLTRB(0, 0, 270, 0),
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(64, 57, 58, 59),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: const Text(
+              const SizedBox(
+                child: Text(
                   'ユーザー名',
+                  textAlign: TextAlign.start,
                   style: TextStyle(
                     fontSize: 25,
-                    fontWeight: FontWeight.normal,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
 
-              Container(
+              SizedBox(
                 width: 500,
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      color: Colors.black,
-                      width: 3,
-                    ),
-                  ),
-                ),
                 child: Text(
                   mad,
                   style: const TextStyle(fontSize: 20),
                 ),
               ),
               Container(
-                height: 20, //空白
-                color: const Color.fromARGB(255, 255, 255, 255),
-                alignment: Alignment.center,
-                child: const Text(''),
+                height: 1, // 線の高さ
+                width: double.infinity, // 横幅いっぱいに広げる
+                color: Colors.black, // 線の色
               ),
               Container(
+                height: 50,
+              ),
+              const SizedBox(
                 width: 130,
-                margin: const EdgeInsets.fromLTRB(0, 0, 270, 0),
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(64, 57, 58, 59),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: const Text(
-                  'ユーザーid',
-                  style: TextStyle(fontSize: 25),
-                ),
-              ),
-              Container(
-                width: 500,
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      color: Colors.black,
-                      width: 3,
-                    ),
+                child: Text(
+                  'ユーザーID',
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
+              ),
+              SizedBox(
+                width: 500,
                 child: Text(
                   uid,
                   style: const TextStyle(fontSize: 20),
                 ),
               ),
-
               Container(
-                height: 20, //空白
-                color: const Color.fromARGB(255, 255, 255, 255),
-                alignment: Alignment.center,
-                child: const Text(''),
+                height: 1, // 線の高さ
+                width: double.infinity, // 横幅いっぱいに広げる
+                color: Colors.black, // 線の色
+              ),
+
+              const SizedBox(
+                height: 30,
               ),
 
               Container(
@@ -140,7 +122,7 @@ class AccountScreen extends StatelessWidget {
                   }, //ボタンを押した後の処理
 
                   style: TextButton.styleFrom(
-                    foregroundColor: const Color.fromRGBO(233, 50, 5, 0.705),
+                    foregroundColor: const Color.fromARGB(179, 134, 33, 8),
                     textStyle: const TextStyle(
                       fontSize: 30,
                     ),
@@ -148,12 +130,11 @@ class AccountScreen extends StatelessWidget {
                   child: const Text('パスワード変更'),
                 ),
               ),
-              Container(
-                height: 20, //空白
-                color: const Color.fromARGB(255, 255, 255, 255),
-                alignment: Alignment.center,
-                child: const Text(''),
+
+              const SizedBox(
+                height: 30,
               ),
+
               Container(
                 decoration: BoxDecoration(
                   color: const Color.fromARGB(64, 57, 58, 59),

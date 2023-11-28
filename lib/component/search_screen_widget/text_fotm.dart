@@ -40,8 +40,9 @@ class TextFormState extends State<TextForm> {
                 ),
               ),
             ),
-            SizedBox(
+            Container(
               width: size.width / 15,
+              color: const Color.fromARGB(31, 199, 9, 9),
             ),
             Expanded(
                 child: TextFormField(

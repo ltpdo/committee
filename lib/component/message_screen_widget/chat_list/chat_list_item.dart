@@ -34,8 +34,11 @@ class tolkListItem extends StatelessWidget {
               Row(
                 children: [
                   const Icon(Icons.person),
-                  SizedBox(width: 15),
-                  Text(community.name!),
+                  const SizedBox(width: 15),
+                  Text(
+                    community.name!,
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
                 ],
               ),
             ],

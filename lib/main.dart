@@ -13,6 +13,8 @@ Future<void> main() async {
     ProviderScope() ... Riverpodを使用できるクラスを指定する
     runAppeメソッドに渡すクラスをこれでラップすることでアプリ全体でRiverpodが使用できるようになる
     */
-    const ProviderScope(child: MyApp()),
+    ProviderScope(
+      child: MyApp(),
+    ),
   );
 }
