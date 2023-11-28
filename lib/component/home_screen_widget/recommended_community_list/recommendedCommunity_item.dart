@@ -29,7 +29,7 @@ class RecommendedCommunityItems extends StatelessWidget {
               );
             },
             child: Card(
-              color: Colors.grey[100],
+              color: const Color.fromARGB(255, 248, 244, 244),
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20,
