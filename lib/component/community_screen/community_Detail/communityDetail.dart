@@ -20,19 +20,146 @@ class CommunityDetailScreen extends StatelessWidget {
     List<String>? representativeId = community.representative;
 
     return Scaffold(
+      backgroundColor: const Color.fromARGB(197, 215, 172, 206),
       appBar: AppBar(
         title: const Text('コミュニティ詳細'),
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('コミュニティ名: ${community.name}'),
-            Text('日時: ${community.activityTime}'),
-            Text('場所: ${community.location}'),
-            Text('メンバーID: ${community.members}'),
-            Text('代表メンバーID: ${community.representative}'),
-            Text('isrepresentaitive: $isrepresentative'),
+            const SizedBox(
+              height: 30,
+            ),
+            Container(
+              //写真　サイズはご自由に
+              height: 300,
+              width: 500,
+              color: Colors.amber,
+              margin: const EdgeInsets.all(10),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  alignment: Alignment.centerLeft,
+                  child: const Text(
+                    'コミュニティ名',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  margin: const EdgeInsets.symmetric(horizontal: 30),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                        color: const Color.fromARGB(255, 149, 40, 118),
+                        width: 2),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Text(
+                    ' ${community.name}',
+                    style: const TextStyle(fontSize: 22),
+                  ),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 10),
+
+            const SizedBox(height: 10),
+            Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  alignment: Alignment.centerLeft,
+                  child: const Text(
+                    '活動内容',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  margin: const EdgeInsets.symmetric(horizontal: 30),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                        color: const Color.fromARGB(255, 149, 40, 118),
+                        width: 2),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Text(
+                    ' ${community.content}',
+                    style: const TextStyle(fontSize: 22),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+
+            Center(
+              child: Container(
+                alignment: Alignment.center,
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        '活動時間:',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(' ${community.activityTime}'),
+                      const SizedBox(width: 20),
+                      const Text(
+                        '場所: ',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text('${community.location}'),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 10),
+            Container(
+              margin: const EdgeInsets.symmetric(
+                horizontal: 20,
+              ),
+              alignment: Alignment.centerLeft,
+              child: const Text(
+                'メンバーリスト',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.left,
+              ),
+            ),
+
+            //Text('メンバーID: ${community.members}'),
+            //Text('代表メンバーID: ${community.representative}'),
+            //Text('isrepresentaitive: $isrepresentative'),
+
             FutureBuilder<List<String>>(
               future: getMemberNames(membersId),
               builder: (context, snapshot) {
@@ -48,7 +175,17 @@ class CommunityDetailScreen extends StatelessWidget {
                         Row(
                           children: [
                             Expanded(
-                              child: Text('メンバー名： ${memberNames[i]}'),
+                              child: Container(
+                                margin: const EdgeInsets.symmetric(
+                                  horizontal: 35,
+                                ),
+                                child: Text(
+                                  '・ ${memberNames[i]}',
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ),
                             ),
                             if (isrepresentative &&
                                 !representativeId!.contains(membersId![i]))
@@ -71,7 +208,10 @@ class CommunityDetailScreen extends StatelessWidget {
             ),
             // メンバー名を表示する
             isMember
-                ? const ElevatedButton(onPressed: null, child: Text('参加しています'))
+                ? const ElevatedButton(
+                    onPressed: null,
+                    child: Text('参加しています'),
+                  )
                 : ElevatedButton(
                     onPressed: () {
                       joinCommunity(authenticatedUser.uid);

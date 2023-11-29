@@ -16,7 +16,7 @@ class CommunitiesListScreen extends StatelessWidget {
         body: Column(
           children: [
             Container(
-              color: Colors.red,
+              color: const Color.fromARGB(31, 199, 9, 9),
               child: Column(
                 children: [
                   const SizedBox(height: 12),
