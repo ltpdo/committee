@@ -90,7 +90,7 @@ class RegisterModel {
     //Firebase Storageに画像をアップロードする
     if (userImage.imageFile != null) {
       final Reference storageRef = FirebaseStorage.instance.ref();
-      final Reference communityImageRef = storageRef.child("$name.png");
+      final Reference communityImageRef = storageRef.child("user/$name.png");
       final File file = File(userImage.imageFile!.path);
       try {
         await communityImageRef.putFile(file);
