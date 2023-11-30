@@ -50,8 +50,8 @@ class belongToCommunityItem extends StatelessWidget {
                     Expanded(
                       child: Column(
                         children: [
-                          Text('日時：' + communities[index].activityTime!),
-                          Text('場所：' + communities[index].location!),
+                          Text('日時：${communities[index].activityTime!}'),
+                          Text('場所：${communities[index].location!}'),
                         ],
                       ),
                     ),

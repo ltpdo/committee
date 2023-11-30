@@ -41,19 +41,24 @@ class CommunitiesList extends StatelessWidget {
         List<Community> communityList =
             snapshot.data!.docs.map((DocumentSnapshot doc) {
           Map<String, dynamic>? data = doc.data() as Map<String, dynamic>;
+          List<String> members = (data['members'] as List<dynamic>?)
+                  ?.map((memberData) => memberData.toString())
+                  .toList() ??
+              [];
           return Community(
-            // コミュニティのデータを取得してCommunityオブジェクトに変換
-            // 必要に応じてCommunityモデルのコンストラクタを変更してください
             circleId: doc.id,
             name: data['name'],
             content: data['content'],
             activityTime: data['activityTime'],
             location: data['location'],
-            /*
-            tags: data['tags'],
-            members: data['members'],
             url: "abc",
             picture: "",
+            members: members,
+            /*
+            tags: data['tags'],
+            
+            
+            
             representative: data['members'],
             */
           );
@@ -63,7 +68,7 @@ class CommunitiesList extends StatelessWidget {
 
         return Column(
           children: [
-            Container(
+            SizedBox(
               width: double.infinity,
               height: 600,
               child: ListView.builder(

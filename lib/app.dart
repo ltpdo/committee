@@ -10,7 +10,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme:
             GoogleFonts.zenMaruGothicTextTheme(Theme.of(context).textTheme),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          background: const Color.fromARGB(197, 215, 172, 206), // 任意の背景色
+        ),
         useMaterial3: true,
       ),
       home: const Welcome(),
