@@ -19,6 +19,8 @@ class CommunityDetailScreen extends StatelessWidget {
     List<String>? membersId = community.members;
     List<String>? representativeId = community.representative;
 
+    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(197, 215, 172, 206),
       appBar: AppBar(
@@ -30,13 +32,20 @@ class CommunityDetailScreen extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            Container(
-              //写真　サイズはご自由に
-              height: 300,
-              width: 500,
-              color: Colors.amber,
-              margin: const EdgeInsets.all(10),
-            ),
+            if (community.picture == "" || community.picture == null) ...{
+              IconTheme(
+                data: IconThemeData(size: size.width / 1.1),
+                child: const Icon(Icons.account_box),
+              ),
+            } else ...{
+              SizedBox(
+                width: size.width / 1.1,
+                height: size.width / 1.1,
+                child: FittedBox(
+                    fit: BoxFit.contain,
+                    child: Image.network(community.picture ?? "")),
+              )
+            },
             const SizedBox(
               height: 20,
             ),
