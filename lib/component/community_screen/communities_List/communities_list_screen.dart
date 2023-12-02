@@ -1,4 +1,4 @@
-import 'package:committee/component/community_screen/communities_List/communitiesList.dart';
+import 'package:committee/component/community_screen/communities_List/communities_list.dart';
 import 'package:flutter/material.dart';
 
 class CommunitiesListScreen extends StatelessWidget {

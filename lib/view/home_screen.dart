@@ -1,7 +1,7 @@
-import 'package:committee/component/community_screen/communities_List/communitiesList_screen.dart';
+import 'package:committee/component/community_screen/communities_List/communities_list_screen.dart';
 import 'package:committee/component/home_screen_widget/belong_to_community_list/belong_to_community_list.dart';
 import 'package:committee/component/home_screen_widget/create_community.dart';
-import 'package:committee/component/home_screen_widget/recommended_community_list/recommendedCommunity_list.dart';
+import 'package:committee/component/home_screen_widget/recommended_community_list/recommended_community_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -78,7 +78,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    const belongToCommunityList(),
+                    const BelongToCommunityList(),
                     const SizedBox(height: 6),
                     ElevatedButton(
                       onPressed: () {

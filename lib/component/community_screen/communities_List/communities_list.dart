@@ -74,7 +74,7 @@ class CommunitiesList extends StatelessWidget {
               child: ListView.builder(
                 itemCount: communityList.length,
                 itemBuilder: (context, index) {
-                  return belongToCommunityItem(
+                  return BelongToCommunityItem(
                     communities: communityList,
                     index: index,
                   );

@@ -245,7 +245,7 @@ class CommunityDetailScreen extends StatelessWidget {
 
         if (userSnapshot.docs.isNotEmpty) {
           String userName = userSnapshot.docs[0]['name'];
-          print('User ID: $memberId, User Name: $userName');
+          //print('User ID: $memberId, User Name: $userName');
           memberNames.add(userName);
         } else {
           print('User ID: $memberId does not exist');

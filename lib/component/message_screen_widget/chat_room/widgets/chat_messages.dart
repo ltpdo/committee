@@ -13,13 +13,10 @@ class ChatMessages extends StatelessWidget {
     final authenticatedUser = FirebaseAuth.instance.currentUser!;
     print(authenticatedUser.uid);
 
-    String _authUid = authenticatedUser.uid;
-
     return StreamBuilder(
       stream: FirebaseFirestore.instance
           .collection('chat')
           .where('to', isEqualTo: circleid)
-          //.where('uid', isEqualTo: _authUid)
           .orderBy(
             'createdAt',
             descending: true,
@@ -27,9 +24,7 @@ class ChatMessages extends StatelessWidget {
           .snapshots(),
       builder: (ctx, chatSnapshot) {
         if (chatSnapshot.hasError) {
-          return const Center(
-              //child: Text('Something went wrong...'),
-              );
+          return const Center();
         }
 
         final loadedMessages = chatSnapshot.data?.docs ?? []; // null安全なアクセス
@@ -43,10 +38,9 @@ class ChatMessages extends StatelessWidget {
           reverse: true,
           itemCount: loadedMessages.length,
           itemBuilder: (ctx, index) {
-            final chatMessage =
-                loadedMessages[index]!.data() ?? {}; // null安全なアクセス
+            final chatMessage = loadedMessages[index].data(); // null安全なアクセス
             final nextChatMessage = index + 1 < loadedMessages.length
-                ? loadedMessages[index + 1]?.data() ?? {}
+                ? loadedMessages[index + 1].data()
                 : null;
 
             final currentMessageUserId = chatMessage['uid'];

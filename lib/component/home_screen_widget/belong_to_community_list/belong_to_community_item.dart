@@ -1,10 +1,9 @@
-import 'package:committee/component/community_screen/community_Detail/communityDetail.dart';
+import 'package:committee/component/community_screen/community_Detail/community_detail.dart';
 import 'package:committee/models/community.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class belongToCommunityItem extends StatelessWidget {
-  const belongToCommunityItem({
+class BelongToCommunityItem extends StatelessWidget {
+  const BelongToCommunityItem({
     super.key,
     required this.communities,
     required this.index,

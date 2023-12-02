@@ -29,9 +29,7 @@ class _NewMessageState extends State<NewMessage> {
       return;
     }
 
-    final user = FirebaseAuth.instance.currentUser!;
-    final userData =
-        await FirebaseFirestore.instance.collection('user').doc(user.uid).get();
+    final User? user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
       final String uid = user.uid;
@@ -45,9 +43,8 @@ class _NewMessageState extends State<NewMessage> {
     FirebaseFirestore.instance.collection('chat').add({
       'text': enteredMessage,
       'createdAt': Timestamp.now(),
-      'uid': user.uid,
+      'uid': user?.uid,
       'to': widget.circleid,
-      //'name': userData.data()!['name'],
     });
   }
 

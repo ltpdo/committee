@@ -4,8 +4,8 @@ import 'package:committee/models/community.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class belongToCommunityList extends StatelessWidget {
-  const belongToCommunityList({
+class BelongToCommunityList extends StatelessWidget {
+  const BelongToCommunityList({
     Key? key,
   }) : super(key: key);
 
@@ -67,7 +67,7 @@ class belongToCommunityList extends StatelessWidget {
               child: ListView.builder(
                 itemCount: communityList.length,
                 itemBuilder: (context, index) {
-                  return belongToCommunityItem(
+                  return BelongToCommunityItem(
                     communities: communityList,
                     index: index,
                   );
