@@ -1,10 +1,9 @@
+import 'package:committee/bottom_navigation_bar/main_page_dtate.dart';
 import 'package:committee/models/tag.dart';
 import 'package:committee/provider/tag_service.dart';
 import 'package:committee/provider/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../bottom_navigation_bar/main_page_dtate.dart';
 
 class SelectTagScreen extends ConsumerStatefulWidget {
   final String urole;
