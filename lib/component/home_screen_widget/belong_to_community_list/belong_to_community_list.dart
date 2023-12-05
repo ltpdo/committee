@@ -45,16 +45,16 @@ class BelongToCommunityList extends StatelessWidget {
           List<String> representaitive =
               List<String>.from(data['representaitive']);
           return Community(
-            // コミュニティのデータを取得してCommunityオブジェクトに変換
-            // 必要に応じてCommunityモデルのコンストラクタを変更してください
-            circleId: doc.id,
-            name: data['name'],
-            content: data['content'],
-            activityTime: data['activityTime'],
-            location: data['location'],
-            members: members,
-            representative: representaitive,
-          );
+              // コミュニティのデータを取得してCommunityオブジェクトに変換
+              // 必要に応じてCommunityモデルのコンストラクタを変更してください
+              circleId: doc.id,
+              name: data['name'],
+              content: data['content'],
+              activityTime: data['activityTime'],
+              location: data['location'],
+              members: members,
+              representative: representaitive,
+              picture: data["picture"]);
         }).toList();
 
         print(authenticatedUser.uid);
