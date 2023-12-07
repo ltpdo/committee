@@ -5,15 +5,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
-  //Firebaseの初期化
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
-    /*
-    ProviderScope() ... Riverpodを使用できるクラスを指定する
-    runAppeメソッドに渡すクラスをこれでラップすることでアプリ全体でRiverpodが使用できるようになる
-    */
-    ProviderScope(
+    const ProviderScope(
       child: MyApp(),
     ),
   );

@@ -1,4 +1,4 @@
-import 'package:committee/bottom_navigation_bar/main_page_dtate.dart';
+import 'package:committee/component/bottom_navigation_bar/main_page_dtate.dart';
 import 'package:committee/models/tag.dart';
 import 'package:committee/provider/tag_service.dart';
 import 'package:committee/provider/user_service.dart';
@@ -138,7 +138,7 @@ class SelectTagScreenState extends ConsumerState<SelectTagScreen> {
                             .registerTags(userTags)
                             .then((_) => Navigator.of(context)
                                     .push(MaterialPageRoute(builder: (context) {
-                                  return MainPageState();
+                                  return const MainPageState();
                                 })));
                   },
                   style: ButtonStyle(

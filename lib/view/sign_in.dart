@@ -1,4 +1,4 @@
-import 'package:committee/bottom_navigation_bar/main_page_dtate.dart';
+import 'package:committee/component/bottom_navigation_bar/main_page_dtate.dart';
 import 'package:committee/models/auth/sign_in_model.dart';
 import 'package:flutter/material.dart';
 
